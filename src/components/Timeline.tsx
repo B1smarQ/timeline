@@ -9,7 +9,7 @@ export const Timeline: React.FC = () => {
     return (
         <div className="relative max-w-6xl mx-auto">
             {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-0.5 w-1 bg-gradient-to-b from-primary-500 to-gray-600 h-full" />
+            <div className="absolute left-1/2 transform -translate-x-0.5 w-1 bg-gradient-to-b from-primary-500 to-gray-600 h-full timeline-glow" />
 
             <div className="space-y-32 py-20">
                 {stages.map((stage, index) => (
@@ -22,7 +22,6 @@ export const Timeline: React.FC = () => {
                     >
                         <TimelineStage
                             stage={stage}
-                            index={index}
                             isActive={index === currentStage}
                             isPast={index < currentStage}
                         />

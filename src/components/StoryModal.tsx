@@ -45,19 +45,17 @@ export const StoryModal: React.FC = () => {
                     <div className="p-6">
                         {/* Story Cover and Info */}
                         <div className="flex gap-6 mb-8">
-                            <div className="flex-shrink-0">
+                            <div className="flex-shrink-0 min-h-72 h-auto flex items-center">
                                 <StoryCover
                                     cover={selectedStory.cover}
                                     title={selectedStory.title}
-                                    author={selectedStory.author}
-                                    className="w-48 h-64"
+                                    className="w-48 h-72 object-contain"
                                 />
                             </div>
 
                             <div className="flex-1 flex flex-col justify-center">
                                 <div className="mb-4">
                                     <h2 className="text-2xl font-bold text-white mb-2">{selectedStory.title}</h2>
-                                    <p className="text-lg text-gray-400 mb-4">by {selectedStory.author}</p>
                                     <p className="text-gray-300 leading-relaxed">{selectedStory.description}</p>
                                 </div>
 

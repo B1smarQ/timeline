@@ -82,8 +82,8 @@ export const ChapterReader: React.FC = () => {
                                 <ArrowLeft size={20} />
                             </button>
                             <div className="text-center flex-1">
-                                <h1 className="text-lg font-semibold text-white">{selectedChapter.title}</h1>
-                                <p className="text-sm text-gray-400">{selectedStory.title} by {selectedStory.author}</p>
+                                <h1 className="text-2xl md:text-3xl font-extrabold text-white  decoration-primary-400">{selectedChapter.title}</h1>
+                                <p className="text-lg md:text-xl font-semibold text-primary-200 italic">{selectedStory.title}</p>
                             </div>
                         </div>
 

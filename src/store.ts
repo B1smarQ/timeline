@@ -25,6 +25,8 @@ export const useAppStore = create<AppState>()(
             stages: initializeStages(sampleData),
             selectedStory: null,
             selectedChapter: null,
+            showWelcome: true,
+            setShowWelcome: (show: boolean) => set({ showWelcome: show }),
 
             setCurrentStage: (stage: number) => set({ currentStage: stage }),
 
@@ -139,6 +141,7 @@ export const useAppStore = create<AppState>()(
                     stages: initializeStages(sampleData),
                     selectedStory: null,
                     selectedChapter: null,
+                    showWelcome: true,
                 });
             },
         }),

@@ -168,7 +168,7 @@ The world is heavy. But he is not.
     },
     {
         id: 'stage-4',
-        title: 'A light, reignited once more',
+        title: 'A Light, Reignited Once More',
         year: "14-12-2024",
         description: 'A light, once extinguished, is reignited once again...',
         isUnlocked: false,
@@ -460,7 +460,8 @@ One evening, as the sky bruised purple at the edges, the man peeled off his glov
 The boy watched, breath caught like a leaf in a current, as the man’s bare hands hovered between them — raw, unguarded, trembling with the weight of their own honesty.
 The boy reached out, his fingertips brushing the man’s knuckles, and in that touch, they spoke:
 
-> I know you.
+> I know you.\n
+ 
 > I know you know.
 
 The world did not stop. The war did not cease. The ache of living did not vanish.

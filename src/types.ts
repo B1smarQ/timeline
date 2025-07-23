@@ -33,6 +33,10 @@ export interface AppState {
     selectedStory: Story | null;
     selectedChapter: Chapter | null;
 
+    // Welcome modal state
+    showWelcome: boolean;
+    setShowWelcome: (show: boolean) => void;
+
     // Actions
     setCurrentStage: (stage: number) => void;
     setFontSize: (size: 'small' | 'medium' | 'large') => void;

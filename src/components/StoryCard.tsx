@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lock, BookOpen, CheckCircle } from 'lucide-react';
+import { Lock, CheckCircle } from 'lucide-react';
 import { StoryCover } from './StoryCover';
 import { Story } from '../types';
 import { useAppStore } from '../store';
@@ -10,7 +10,7 @@ interface StoryCardProps {
     stageId: string;
 }
 
-export const StoryCard: React.FC<StoryCardProps> = ({ story, stageId }) => {
+export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
     const { selectStory } = useAppStore();
 
     const readChapters = story.chapters.filter(ch => ch.isRead).length;
@@ -34,12 +34,11 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story, stageId }) => {
             onClick={handleClick}
         >
             {/* Story Cover */}
-            <div className="h-32 relative">
+            <div className="min-h-72 h-32 relative">
                 {story.isUnlocked ? (
                     <StoryCover
                         cover={story.cover}
                         title={story.title}
-                        author={story.author}
                         className="w-full h-full"
                     />
                 ) : (
@@ -51,11 +50,10 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story, stageId }) => {
 
             <div className="p-4">
                 <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold text-white truncate">{story.title}</h3>
+                    <h3 className="font-extrabold text-lg md:text-xl text-white decoration-primary-400 break-words leading-tight">{story.title}</h3>
                     {isCompleted && <CheckCircle size={16} className="text-green-500 flex-shrink-0 ml-2" />}
                 </div>
 
-                <p className="text-sm text-gray-400 mb-2">by {story.author}</p>
                 <p className="text-sm text-gray-300 mb-3 line-clamp-2">{story.description}</p>
 
                 {story.isUnlocked && (

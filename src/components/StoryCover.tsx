@@ -5,14 +5,12 @@ import { BookOpen, Image } from 'lucide-react';
 interface StoryCoverProps {
     cover: string;
     title: string;
-    author: string;
     className?: string;
 }
 
 export const StoryCover: React.FC<StoryCoverProps> = ({
     cover,
     title,
-    author,
     className = ''
 }) => {
     const [imageError, setImageError] = React.useState(false);
@@ -73,7 +71,6 @@ export const StoryCover: React.FC<StoryCoverProps> = ({
 
                     <div className="text-center">
                         <h3 className="font-bold text-lg mb-1 leading-tight">{title}</h3>
-                        <p className="text-sm opacity-90 font-medium">{author}</p>
                     </div>
 
                     <div className="flex justify-center opacity-60">
@@ -113,7 +110,6 @@ export const StoryCover: React.FC<StoryCoverProps> = ({
             {imageLoaded && (
                 <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
                     <h3 className="font-bold text-sm mb-1 leading-tight">{title}</h3>
-                    <p className="text-xs opacity-90">{author}</p>
                 </div>
             )}
         </motion.div>
