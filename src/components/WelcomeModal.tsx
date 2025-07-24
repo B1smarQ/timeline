@@ -14,7 +14,13 @@ const welcomeText = `This is a story of my life, and the people who have been a 
 
 I hope you enjoy reading them as much as I enjoyed writing them.
 
-Those stories are based on my initial impressions of you and may not be entirely accurate.
+Those stories are heavily influenced by my initial impressions of you and may not be entirely accurate.
+
+This project is private and should not be shared with anyone.
+
+If you were sent this, that means that your story is included here.
+
+Any feedback is welcome.
 
 *Click below to begin your journey...*`;
 

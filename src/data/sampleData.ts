@@ -667,6 +667,41 @@ The mime knelt in the wreckage and pressed his mouth to the largest shard. Not t
 
 To drink the proof of his own bleeding.`,
                         isRead: false,
+                    },
+                    {
+                        id: 'ch-10-4',
+                        title:'The Mime\'s Final Monologue',
+                        content: `# The Mime's Final Monologue
+The stage was empty.
+
+No—not empty. Stripped. The velvet curtains hung in tatters, the footlights smashed to glittering dust. The mime stood center stage, but the glass box was gone. In its place: a silence so vast it echoed.
+
+He had spent lifetimes perfecting the art of performing absence—smiling through the hollows, laughing to fill the gaps between heartbeats. But now, under the gaze of the fire-bearer, he found himself terrified of his own fullness.
+
+He reached into his chest.
+
+Out came not roses, not scarves, not the usual sleight-of-hand sorrows.
+
+Just a fistful of light, raw and unrefined.
+
+It burned. Oh god, how it burned.
+
+The fire-bearer did not applaud. Did not gasp. Only stepped forward, his own hands alight, and pressed their palms together—not to extinguish, but to magnify.
+
+The mime opened his mouth.
+
+Out came not a joke. Not a scripted sonnet.
+
+A single word, so long rehearsed in the dark it had grown roots in his lungs:
+
+*"You."*
+
+The stage lights, long dead, flickered once.
+
+Somewhere, a rose finally crumbled to dust.
+
+`,
+                        isRead: false,
                     }
                 ]
             },
@@ -740,7 +775,49 @@ As a map home.
                         `,
                         isRead: false,
                     },
+                    {
+                        id: 'ch-11-3',
+                        title: 'The Star Prince Drowns in Daylight',
+                        content: `# The Star Prince Drowns in Daylight
 
+He had spent lifetimes mapping the distance between stars—
+measuring the safe, celestial gaps where love could be admired
+but never burned by.
+
+Then came the fire-bearer, who lit torches in the cathedral of his ribs
+and called the flames "welcome."
+
+The star prince trembled.
+
+To step from the sky is to fall.
+To kneel is to shatter.
+To love is to let the universe see you unfinished.
+
+Yet when the fire-bearer reached for him,
+he did not offer polished constellations or rehearsed sonnets.
+He opened his hands like a man emptying his pockets of gold—
+and let the star prince count his scars instead.
+
+"Here," said the fire-bearer, pressing a palm to the prince's chest,
+"is where your light lives when you forget to be afraid."
+
+And the star prince, who had once sung galaxies into being,
+found his voice reduced to a single, mortal truth:
+
+> ***"Take it,"*** he whispered.
+> ***"It has always been yours."***
+
+Above them, the sky did not collapse.
+The stars did not weep.
+
+They simply watched—
+as the prince, for the first time,
+stopped performing his radiance
+and simply let it be.
+`,
+                        isRead: false,
+                    },
+                    
                 ]
             },
 
