@@ -3,7 +3,6 @@ import { StoryModal } from './components/StoryModal';
 import { ChapterReader } from './components/ChapterReader';
 import { FontSizeControls } from './components/FontSizeControls';
 import { useAppStore } from './store';
-import React from 'react';
 import { WelcomeModal } from './components/WelcomeModal';
 
 function App() {

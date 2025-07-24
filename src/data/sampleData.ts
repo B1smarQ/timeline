@@ -41,7 +41,7 @@ But the boy danced on, his laughter a shield against the dark.
 Until the day the shield cracked.`,
                         isRead: false,
                     }
-                    
+
                 ]
             }
         ]
@@ -61,7 +61,7 @@ Until the day the shield cracked.`,
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/3ff28187-7600-46dc-ace8-e1dc5651586c/5-of-cups.jpg?format=1000w',
                 isUnlocked: true,
-                unlockOrder: 2,
+                unlockOrder: 1,
                 chapters: [
                     {
                         id: 'ch-2-1',
@@ -120,8 +120,8 @@ And though he couldn't laugh anymore, his hands stayed clean.`,
                     }
                 ]
             },
-            
-            
+
+
         ]
     },
     {
@@ -139,7 +139,7 @@ And though he couldn't laugh anymore, his hands stayed clean.`,
                 description: 'A man gives joy like breath—effortless, endless, until the wind changes.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/df1cae60-a1f2-4726-8f60-5f463d6e5f3e/thefool.jpg?format=1000w',
                 isUnlocked: false,
-                unlockOrder: 3,
+                unlockOrder: 1,
                 chapters: [
                     {
                         id: 'ch-3-1',
@@ -181,7 +181,7 @@ The world is heavy. But he is not.
                 description: 'A man dissembles himself, piece by piece, until a note whispers his true name.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/d910d2fd-7fd0-44c1-8a01-fb0741e63226/8-of-swords.jpg?format=1000w',
                 isUnlocked: false,
-                unlockOrder: 4,
+                unlockOrder: 1,
                 chapters: [
                     {
                         id: 'ch-4-1',
@@ -207,7 +207,7 @@ His handsbetrayed him most. Still moved to bless himself the old way when passin
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/3ff28187-7600-46dc-ace8-e1dc5651586c/5-of-cups.jpg?format=1000w',
                 isUnlocked: false,
-                unlockOrder: 5,
+                unlockOrder: 2,
                 chapters: [
                     {
                         id: 'ch-5-1',
@@ -296,9 +296,9 @@ The performance had found its audience at last.`,
                     }
                 ]
             },
-            
-            
-        
+
+
+
         ]
     },
     {
@@ -316,7 +316,7 @@ The performance had found its audience at last.`,
                 description: 'A man blazes so bright, he forgets fire needs fuel—and darkness needs no pardon.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/7060a105-bf22-4375-b581-347a63667b2d/Knight_Wands_reversed.jpg?format=2500w',
                 isUnlocked: false,
-                unlockOrder: 6,
+                unlockOrder: 1,
                 chapters: [
                     {
                         id: 'ch-6-1',
@@ -361,12 +361,12 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/3ff28187-7600-46dc-ace8-e1dc5651586c/5-of-cups.jpg?format=1000w',
                 isUnlocked: false,
-                unlockOrder: 7,
+                unlockOrder: 1,
                 chapters: [
-                        {
-                            id: 'ch-7-1',
-                            title: 'The Unbroken Song',
-                            content: `# The Unbroken Song
+                    {
+                        id: 'ch-7-1',
+                        title: 'The Unbroken Song',
+                        content: `# The Unbroken Song
     
     The boy knew only one truth: the world was kind.
     
@@ -384,12 +384,12 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
     But the boy danced on, his laughter a shield against the dark.
     
     Until the day the shield cracked.`,
-                            isRead: true,
-                        },
-                        {
-                            id: 'ch-7-2',
-                            title: 'The Note That Stole Laughter',
-                            content: `# The Note That Stole Laughter
+                        isRead: true,
+                    },
+                    {
+                        id: 'ch-7-2',
+                        title: 'The Note That Stole Laughter',
+                        content: `# The Note That Stole Laughter
     
     The war drums began, and the boy watched his world fracture.
     
@@ -416,12 +416,12 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
     The road ahead was empty. Behind him, cheers rose like flames.
     
     And though he couldn't laugh anymore, his hands stayed clean.`,
-                            isRead: true,
-                        },
-                        {
-                            id: 'ch-7-3',
-                            title: 'The Collision of Wandering Stars',
-                            content: `# The Collision of Wandering Stars 
+                        isRead: true,
+                    },
+                    {
+                        id: 'ch-7-3',
+                        title: 'The Collision of Wandering Stars',
+                        content: `# The Collision of Wandering Stars 
     
     The boy who carried fire met the man who drank shadows.
     
@@ -444,8 +444,8 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
     Night fell. Neither moved.
     
     The performance had found its audience at last.`,
-                            isRead: true,
-                        },
+                        isRead: true,
+                    },
                     {
                         id: 'ch-7-4',
                         title: 'The Gravity of Two Falling Stars',
@@ -483,7 +483,7 @@ But that night, beneath a sky that had long forgotten how to witness miracles, t
                 description: 'A performer tends his dying props, rehearsing a love scene no one will attend.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/2adb63b1-c418-4f17-9e3c-dc8c56636bf3/7-of-cups.jpg?format=1000w',
                 isUnlocked: false,
-                unlockOrder: 8,
+                unlockOrder: 2,
                 chapters: [
                     {
                         id: 'ch-8-1',
@@ -544,7 +544,7 @@ The rose's remaining petals grew more perfect as they brittled. He'd trained the
                 description: 'A lover walks the knife’s edge between what if and even so, counting his heartbeats like prayers',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/ff53f175-b9c1-4a97-b204-f818bbbe3cf9/Picsart_22-05-17_00-45-59-771.jpg?format=2500w',
                 isUnlocked: false,
-                unlockOrder: 9,
+                unlockOrder: 2,
                 chapters: [
                     {
                         id: 'ch-9-1',
@@ -576,7 +576,7 @@ But for now, he walked.
                         isRead: false,
                     }
                 ]
-            },    
+            },
         ]
     },
     {
@@ -589,15 +589,183 @@ But for now, he walked.
         stories: [
             {
                 id: 'story-10',
+                title: 'His shadow, the spotlight',
+                author: 'Eleanor Blackwood',
+                description: 'A performer tends his dying props, rehearsing a love scene no one will attend.',
+                cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/2adb63b1-c418-4f17-9e3c-dc8c56636bf3/7-of-cups.jpg?format=1000w',
+                isUnlocked: false,
+                unlockOrder: 1,
+                chapters: [
+                    {
+                        id: 'ch-10-1',
+                        title: 'The Streetlight Sonata',
+                        content: `# The Streetlight Sonata
+He moved through the city like a traveling revival of some forgotten opera—all sweeping gestures and dramatic pauses that turned sidewalk cracks into stage marks. 
+The war was a rumor written in someone else's alphabet, but here, where the shop awnings flapped like tired curtains, he performed as if the whole district were his velvet-boxed auditorium.
+
+His morning began with the slow unfurling of gloves—always white, always spotless—each finger extended like the opening note of an overture. By noon he'd collected a chorus of street urchins who trailed behind him, mimicking his grand bows to lampposts and his conspiratorial whispers to storefront mannequins. The children didn't laugh so much as gape, their mouths perfect O's of proscenium arches.
+
+When rain fell, his umbrella opened with the dramatic flourish of a parachute silk, and suddenly the wet pavement became his spotlight. He'd leap over puddles with the precision of a danseur, spinning his umbrella so droplets arced like diamond strings. Passersby found themselves smiling without meaning to, their own walks home suddenly feeling pedestrian in both senses.
+
+By evening he held court at the fountain, producing playing cards from the mouths of pigeons and making cigarette smoke curl into perfect treble clefs. The night crowd sighed on cue, their collective exhale the wind section to his one-man symphony. Even the moon seemed to hang brighter when he tipped his hat to it, as if acknowledging a follow spot operated by gods.
+
+Tomorrow, like any good matinee, the performance would begin again. The war might rage beyond the hills, the world might fray at its edges—but here, under these streetlights, the show was eternal.
+
+No one thought to question why his gloves never stained. Why his shoes never scuffed. Why his laughter never once, not for a single fractured second, rang less than perfect.
+
+The mask, after all, was the man.
+
+The man was the mask.
+
+And the greatest performance is one where the audience never thinks to ask what's underneath.
+`,
+                        isRead: true,
+                    },
+                    {
+                        id: 'ch-10-2',
+                        title: 'Glass Box Sololiquy',
+                        content: `# Glass Box Sololiquy
+The curtain fell the moment he locked his door.
+
+His rented room was not a dressing room but a confessional booth where no god listened. The mirror, his sole audience, reflected back a stranger—a man still wearing the greasepaint grin like a poorly stitched scar. He peeled it off slowly tonight, wincing as the adhesive took pieces of him with it.
+
+On the windowsill, the dried rose stood in its glass coffin. He'd found it three months ago outside the theater, its stem snapped mid-descent from some romantic gesture gone unclaimed. Every evening since, he'd turned it slightly toward the fading light, as if directing a reluctant actor toward its mark.
+
+"Take your cue," he whispered.
+
+The rose said nothing. It had forgotten how to play alive.
+
+### The Backstage of His Mind
+#### Act I: The Love Scene (Never Staged)
+He rehearsed confessions to the rose's bent head. "I—" too sharp. "You—" too direct. The words curled up and died in his throat, becoming yet another joke he'd tell tomorrow to louder laughter.
+
+#### Act II: The Tragic Reveal
+In the blackout between streetlamp flickers, he pressed a fresh petal between his palms—a fossil in the making. The real performance was in the careful way he never let his fingertips tremble.
+
+#### Act III: The Last Night of the Petals
+The rose's remaining petals grew more perfect as they brittled. He'd trained them well. No audience would guess how long they'd been dead.`,
+                        isRead: true,
+                    },
+                    {
+                        id: 'ch-10-3',
+                        title: 'The Glass Box Shatters in Quartet',
+                        content: `# The Glass Box Shatters in Quartet
+The glass box had been his cathedral—a hallowed prison of his own design, where every gesture was liturgy and every silence a censored hymn.
+
+Then came the star prince, who pressed his forehead to the pane and sang a note that made the glass sweat. His voice was no longer sound but a hook in the ribs of the sky, pulling down constellations to kneel at their feet.
+
+The shadow-eater arrived next, trailing erased alphabets like shed skin. He laid his palm flat against the barrier, not to break it, but to prove its thinness. The glass groaned.
+
+The fire-bearer came last, his pulse visible through his skin—a lighthouse flickering through storm. Where he touched the box, fissures spread in branching sigils, writing a language of heat and fracture.
+
+And the mime—
+
+The mime watched his own lips part. No practiced grin. No rehearsed line. Just a raw, unscripted sound, tearing up his throat like a wild thing clawing free.
+
+The glass did not shatter. It **unbecame**.
+
+One moment: a cage.
+The next: a thousand falling diamonds, each reflecting not a single face, but four.
+
+The star prince caught one midair.
+The shadow-eater let them pierce his skin like communion wafers.
+The fire-bearer laughed as they melted against his palms.
+
+And the mime—
+
+The mime knelt in the wreckage and pressed his mouth to the largest shard. Not to kiss it goodbye.
+
+To drink the proof of his own bleeding.`,
+                        isRead: false,
+                    }
+                ]
+            },
+            {
+                id: 'story-11',
+                title: 'The Constellation of Maybe',
+                author: 'Eleanor Blackwood',
+                description: 'A lover walks the knife’s edge between what if and even so, counting his heartbeats like prayers.',
+                cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w',
+                isUnlocked: false,
+                unlockOrder: 1,
+                chapters: [
+                    {
+                        id: 'ch-11-1',
+                        title: 'The Language of Almost',
+                        content: `# The Language of Almost
+He walked toward love like an astronomer mapping stars—not with the blind faith of a worshipper, but with the quiet determination of one who trusts the sky even when clouds obscure it.
+
+The possibility lived in his ribs like a second heartbeat. What if. What if. What if. Not the desperate chant of a beggar, but the steady metronome of a man who had learned to move through doubt without letting it move him.
+
+He knew the equations:
+
+Distance x Time = Either Or
+Silence + Averted Eyes = Perhaps Not
+But then—
+A Shared Umbrella in Sudden Rain = The Universe Tilting
+
+The fear was real. It curled at the edges of his coffee cup in the mornings, pooled in the hollow of his pillow at night. But it was not the director of this story, merely a passenger.
+
+When she laughed, the sound was not a verdict but a weather pattern—something that happened to the air between them, not to him alone. When she was silent, it was not rejection but the necessary pause between movements in a symphony still being composed.
+
+He did not armor himself against the no that might come. Instead, he practiced the art of tender observation: the way her fingers hesitated near the sugar bowl, how her shadow crossed his on the pavement like a temporary bridge. These were not guarantees, only evidence that love—like light—exists whether we witness it or not.
+
+The path did not waver. His feet knew their way.
+
+And if someday she turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
+
+But for now, he walked.
+`,
+                        isRead: true,
+                    },
+                    {
+                        id: 'ch-11-2',
+                        title: 'The Star Prince’s Refuge in the House of Burning Shadows',
+                        content: `# The Star Prince’s Refuge in the House of Burning Shadows
+
+The world had always demanded his light—**a star is not meant to hide**, they said. But even supernovas grow weary of their own brilliance.
+
+Then he found them.
+
+The fire-bearer, whose hands did not flinch from his radiance but cupped it like a prayer, turning his exhaustion into a language of shared warmth.
+
+The shadow-eater, who did not ask him to dim but instead opened his own darkness like a cloak, offering respite from the endless performance of illumination.
+
+The shattered mime, whose cracks mirrored his own—a constellation of fractures where the light could finally, mercifully, escape.
+
+Here, in this crooked house at the edge of silence, the star prince learned a new astronomy:
+
+- How to let his voice break without fearing the sky would collapse.
+
+- How to rest his forehead against another’s pulse and hear the universe humming back.
+
+- How to exist as something beyond a celestial body—as simply a body, mortal and trembling.
+
+At dawn, when the world began its hungry clamor again, they wove him a crown not of light, but of breath and fingerprints and whispered truths.
+
+He wore it into the day.
+
+Not as armor.
+
+As a map home.
+                        `,
+                        isRead: false,
+                    },
+
+                ]
+            },
+
+            {
+                id: 'story-12',
                 title: 'The Boy Who Chased the Sun',
                 author: 'Eleanor Blackwood',
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w',
                 isUnlocked: false,
-                unlockOrder: 10,
+                unlockOrder: 2,
                 chapters: [
                     {
-                        id: 'ch-10-1',
+                        id: 'ch-12-1',
                         title: 'The Unbroken Song',
                         content: `# The Unbroken Song
 
@@ -620,7 +788,7 @@ Until the day the shield cracked.`,
                         isRead: true,
                     },
                     {
-                        id: 'ch-10-2',
+                        id: 'ch-12-2',
                         title: 'The Note That Stole Laughter',
                         content: `# The Note That Stole Laughter
 
@@ -652,7 +820,7 @@ And though he couldn't laugh anymore, his hands stayed clean.`,
                         isRead: true,
                     },
                     {
-                        id: 'ch-10-3',
+                        id: 'ch-12-3',
                         title: 'The Collision of Wandering Stars',
                         content: `# The Collision of Wandering Stars 
 
@@ -679,10 +847,10 @@ Night fell. Neither moved.
 The performance had found its audience at last.`,
                         isRead: true,
                     },
-                {
-                    id: 'ch-10-4',
-                    title: 'The Gravity of Two Falling Stars',
-                    content: `# The Gravity of Two Falling Stars
+                    {
+                        id: 'ch-12-4',
+                        title: 'The Gravity of Two Falling Stars',
+                        content: `# The Gravity of Two Falling Stars
                     At first, they orbited—careful, measured, testing the pull between them.
 
 The boy’s laughter became a language the man learned to parse, not in words but in vibrations: the bright staccato of joy, the low hum of contentment, the quiet, flickering notes of something tender and unspoken. The man’s silence, once a fortress, became a garden the boy wandered, tracing the paths of his withheld words like vines climbing a trellis.
@@ -705,10 +873,10 @@ They met in the middle, where the flames turned to gold and the dark softened to
 Forever was a fiction. They knew this.
 
 But that night, beneath a sky that had long forgotten how to witness miracles, they pressed their foreheads together and whispered it anyway.`,
-                    isRead: true,
-                },
+                        isRead: true,
+                    },
                     {
-                        id: 'ch-10-5',
+                        id: 'ch-12-5',
                         title: 'And the Sky Was Not a Ceiling',
                         content: `# And the Sky Was Not a Ceiling
 The path was not a road but a pulse — a vein of light threading through the dark.
@@ -736,19 +904,13 @@ Somewhere ahead, the road softened into light.`,
                     }
                 ]
             },
-            
-            
-            
-            
+
+
+
+
         ]
     }
-    
 
-    
-].map(stage => ({
-    ...stage,
-    stories: stage.stories.map((story, idx) => ({
-        ...story,
-        isUnlocked: idx === 0
-    }))
-}));
+
+
+];

@@ -66,7 +66,7 @@ export const useAppStore = create<AppState>()(
             unlockNextStories: (stageId: string) => {
                 const { stages } = get();
                 const updatedStages = stages.map(stage => {
-                    if (stage.id === stageId) {
+                    if (stage.id === stageId && stage.isUnlocked) {
                         // Get stories sorted by unlock order
                         const storiesWithOrder = stage.stories.map(story => ({
                             ...story,
@@ -75,19 +75,20 @@ export const useAppStore = create<AppState>()(
 
                         // Check which stories should be unlocked
                         const updatedStories = storiesWithOrder.map((story, index) => {
-                            // First story (order 1) is always unlocked if stage is unlocked
+                            // Stories with order 1 (or no order) are unlocked when stage is unlocked
                             if (story.effectiveOrder === 1) {
-                                return { ...story, isUnlocked: stage.isUnlocked };
+                                console.log(`Unlocking first story: ${story.title}`);
+                                return { ...story, isUnlocked: true };
                             }
 
-                            // For subsequent stories, check if previous story is completed
-                            const previousStory = storiesWithOrder[index - 1];
-                            if (previousStory) {
-                                const isPreviousCompleted = previousStory.chapters.every(ch => ch.isRead);
-                                return { ...story, isUnlocked: isPreviousCompleted };
-                            }
+                            // For subsequent stories, check if all previous stories are completed
+                            const previousStories = storiesWithOrder.slice(0, index);
+                            const allPreviousCompleted = previousStories.every(prevStory =>
+                                prevStory.chapters.every(ch => ch.isRead)
+                            );
 
-                            return story;
+                            console.log(`Story ${story.title} (order ${story.effectiveOrder}): ${allPreviousCompleted ? 'UNLOCKED' : 'LOCKED'}`);
+                            return { ...story, isUnlocked: allPreviousCompleted };
                         });
 
                         // Restore original order
@@ -108,29 +109,47 @@ export const useAppStore = create<AppState>()(
                 const { stages, currentStage } = get();
                 const current = stages[currentStage];
 
-                if (!current) return;
+                if (!current || !current.isUnlocked) return;
 
-                // Check if all required chapters are read in unlocked stories
-                const unlockedStories = current.stories.filter(story => story.isUnlocked);
-                const allChaptersRead = unlockedStories.every(story =>
-                    story.chapters.every(chapter => chapter.isRead)
-                );
+                // Check stage completion requirements
+                let stageCompleted = false;
 
-                if (allChaptersRead && currentStage < stages.length - 1) {
+                if (current.requiresAllChaptersRead) {
+                    // Must read all chapters in all unlocked stories
+                    const unlockedStories = current.stories.filter(story => story.isUnlocked);
+                    stageCompleted = unlockedStories.length > 0 && unlockedStories.every(story =>
+                        story.chapters.every(chapter => chapter.isRead)
+                    );
+                } else {
+                    // Just need to read at least one story completely
+                    const unlockedStories = current.stories.filter(story => story.isUnlocked);
+                    stageCompleted = unlockedStories.some(story =>
+                        story.chapters.every(chapter => chapter.isRead)
+                    );
+                }
+
+                console.log(`Stage ${currentStage} completion check:`, {
+                    stageCompleted,
+                    requiresAllChaptersRead: current.requiresAllChaptersRead,
+                    unlockedStories: current.stories.filter(story => story.isUnlocked).length,
+                    totalStories: current.stories.length
+                });
+
+                if (stageCompleted && currentStage < stages.length - 1) {
+                    const nextStageIndex = currentStage + 1;
                     const updatedStages = stages.map((stage, index) => {
-                        if (index === currentStage + 1) {
-                            // Unlock the next stage
-                            return { ...stage, isUnlocked: true };
+                        if (index === nextStageIndex) {
+                            // Unlock the next stage and initialize its first stories
+                            const updatedStories = stage.stories.map(story => ({
+                                ...story,
+                                isUnlocked: story.unlockOrder === 1 || !story.unlockOrder
+                            }));
+                            console.log(`Unlocking stage ${nextStageIndex}:`, stage.title);
+                            return { ...stage, isUnlocked: true, stories: updatedStories };
                         }
                         return stage;
                     });
-                    set({ stages: updatedStages, currentStage: currentStage + 1 });
-
-                    // Call unlockNextStories after state is updated, using setTimeout to ensure state is committed
-                    setTimeout(() => {
-                        const { currentStage: newCurrentStage, stages: newStages, unlockNextStories } = get();
-                        unlockNextStories(newStages[newCurrentStage].id);
-                    }, 0);
+                    set({ stages: updatedStages, currentStage: nextStageIndex });
                 }
             },
 
