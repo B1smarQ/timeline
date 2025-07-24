@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 // Sound effect types
 export type SoundEffect =
@@ -46,6 +46,16 @@ class SoundEffects {
         return gain;
     }
 
+    private connectAndPlay(oscillator: OscillatorNode, gain: GainNode, duration: number) {
+        if (!this.audioContext || !this.effectsGain) return;
+
+        oscillator.connect(gain);
+        gain.connect(this.effectsGain);
+
+        oscillator.start();
+        oscillator.stop(this.audioContext.currentTime + duration);
+    }
+
     playClick() {
         if (!this.audioContext || !this.effectsGain) return;
 
@@ -57,11 +67,7 @@ class SoundEffects {
         oscillator.frequency.exponentialRampToValueAtTime(400, this.audioContext.currentTime + 0.1);
         gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.1);
 
-        oscillator.connect(gain);
-        gain.connect(this.effectsGain);
-
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 0.1);
+        this.connectAndPlay(oscillator, gain, 0.1);
     }
 
     playHover() {
@@ -74,11 +80,7 @@ class SoundEffects {
 
         gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.05);
 
-        oscillator.connect(gain);
-        gain.connect(this.effectsGain);
-
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 0.05);
+        this.connectAndPlay(oscillator, gain, 0.05);
     }
 
     playSuccess() {
@@ -99,7 +101,9 @@ class SoundEffects {
             gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext!.currentTime + delay + 0.5);
 
             oscillator.connect(gain);
-            gain.connect(this.effectsGain);
+            if (this.effectsGain) {
+                gain.connect(this.effectsGain);
+            }
 
             oscillator.start(this.audioContext!.currentTime + delay);
             oscillator.stop(this.audioContext!.currentTime + delay + 0.5);
@@ -109,140 +113,110 @@ class SoundEffects {
     playUnlock() {
         if (!this.audioContext || !this.effectsGain) return;
 
-        // Ascending magical sound
-        const oscillator = this.createOscillator(200);
+        const oscillator = this.createOscillator(440);
         const gain = this.createGain(0.1);
 
         if (!oscillator || !gain) return;
 
-        oscillator.frequency.exponentialRampToValueAtTime(800, this.audioContext.currentTime + 0.3);
-        gain.gain.linearRampToValueAtTime(0.15, this.audioContext.currentTime + 0.1);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.4);
+        oscillator.frequency.exponentialRampToValueAtTime(880, this.audioContext.currentTime + 0.3);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
 
-        oscillator.connect(gain);
-        gain.connect(this.effectsGain);
-
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 0.4);
+        this.connectAndPlay(oscillator, gain, 0.3);
     }
 
     playPageTurn() {
         if (!this.audioContext || !this.effectsGain) return;
 
-        // Soft whoosh sound
-        const noise = this.audioContext.createBufferSource();
-        const buffer = this.audioContext.createBuffer(1, this.audioContext.sampleRate * 0.3, this.audioContext.sampleRate);
-        const data = buffer.getChannelData(0);
+        const oscillator = this.createOscillator(200, 'sawtooth');
+        const gain = this.createGain(0.05);
 
-        for (let i = 0; i < data.length; i++) {
-            data[i] = (Math.random() * 2 - 1) * 0.1 * Math.exp(-i / (this.audioContext.sampleRate * 0.1));
-        }
+        if (!oscillator || !gain) return;
 
-        noise.buffer = buffer;
-        const filter = this.audioContext.createBiquadFilter();
-        filter.type = 'highpass';
-        filter.frequency.setValueAtTime(1000, this.audioContext.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(100, this.audioContext.currentTime + 0.2);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.2);
 
-        const gain = this.createGain(0.3);
-        if (!gain) return;
-
-        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(this.effectsGain);
-
-        noise.start();
-        noise.stop(this.audioContext.currentTime + 0.3);
+        this.connectAndPlay(oscillator, gain, 0.2);
     }
 
     playTypewriter() {
         if (!this.audioContext || !this.effectsGain) return;
 
-        const oscillator = this.createOscillator(150, 'square');
+        const oscillator = this.createOscillator(1200, 'square');
         const gain = this.createGain(0.03);
 
         if (!oscillator || !gain) return;
 
         gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.05);
 
-        oscillator.connect(gain);
-        gain.connect(this.effectsGain);
-
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 0.05);
+        this.connectAndPlay(oscillator, gain, 0.05);
     }
 
     playWhoosh() {
         if (!this.audioContext || !this.effectsGain) return;
 
-        const oscillator = this.createOscillator(100);
-        const gain = this.createGain(0.1);
+        const oscillator = this.createOscillator(300, 'sawtooth');
+        const gain = this.createGain(0.08);
 
         if (!oscillator || !gain) return;
 
-        oscillator.frequency.exponentialRampToValueAtTime(50, this.audioContext.currentTime + 0.2);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.2);
+        oscillator.frequency.exponentialRampToValueAtTime(100, this.audioContext.currentTime + 0.4);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.4);
 
-        oscillator.connect(gain);
-        gain.connect(this.effectsGain);
-
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 0.2);
+        this.connectAndPlay(oscillator, gain, 0.4);
     }
 
     playChime() {
         if (!this.audioContext || !this.effectsGain) return;
 
-        const oscillator = this.createOscillator(1000);
+        const oscillator = this.createOscillator(1047, 'sine');
         const gain = this.createGain(0.1);
 
         if (!oscillator || !gain) return;
 
-        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 1);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 1.0);
 
-        oscillator.connect(gain);
-        gain.connect(this.effectsGain);
+        this.connectAndPlay(oscillator, gain, 1.0);
+    }
 
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 1);
+    play(effect: SoundEffect) {
+        switch (effect) {
+            case 'click':
+                this.playClick();
+                break;
+            case 'hover':
+                this.playHover();
+                break;
+            case 'success':
+                this.playSuccess();
+                break;
+            case 'unlock':
+                this.playUnlock();
+                break;
+            case 'page-turn':
+                this.playPageTurn();
+                break;
+            case 'typewriter':
+                this.playTypewriter();
+                break;
+            case 'whoosh':
+                this.playWhoosh();
+                break;
+            case 'chime':
+                this.playChime();
+                break;
+        }
     }
 }
 
-let soundEffectsInstance: SoundEffects | null = null;
+// Create a singleton instance
+const soundEffects = new SoundEffects();
 
+// Hook for using sound effects
 export const useSound = () => {
-    const playSound = useCallback((effect: SoundEffect) => {
-        if (!soundEffectsInstance) {
-            soundEffectsInstance = new SoundEffects();
-        }
+    const soundEffectsRef = useRef(soundEffects);
 
-        switch (effect) {
-            case 'click':
-                soundEffectsInstance.playClick();
-                break;
-            case 'hover':
-                soundEffectsInstance.playHover();
-                break;
-            case 'success':
-                soundEffectsInstance.playSuccess();
-                break;
-            case 'unlock':
-                soundEffectsInstance.playUnlock();
-                break;
-            case 'page-turn':
-                soundEffectsInstance.playPageTurn();
-                break;
-            case 'typewriter':
-                soundEffectsInstance.playTypewriter();
-                break;
-            case 'whoosh':
-                soundEffectsInstance.playWhoosh();
-                break;
-            case 'chime':
-                soundEffectsInstance.playChime();
-                break;
-        }
+    const playSound = useCallback((effect: SoundEffect) => {
+        soundEffectsRef.current.play(effect);
     }, []);
 
     return { playSound };

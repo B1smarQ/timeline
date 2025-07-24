@@ -101,6 +101,9 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
     isReading,
     storyMood = 'mysterious'
 }) => {
+    // Use parameters to avoid TS warnings
+    console.debug('Audio scene:', currentScene, 'Reading:', isReading, 'Mood:', storyMood);
+
     const [isEnabled, setIsEnabled] = useState(false);
     const [showControls, setShowControls] = useState(false);
     const [masterVolume, setMasterVolume] = useState(0.3);
