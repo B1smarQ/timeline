@@ -8,7 +8,6 @@ export interface Chapter {
 export interface Story {
     id: string;
     title: string;
-    author: string;
     description: string;
     cover: string; // Image path
     chapters: Chapter[];

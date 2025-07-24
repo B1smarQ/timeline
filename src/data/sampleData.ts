@@ -12,7 +12,6 @@ export const sampleData: TimelineStage[] = [
             {
                 id: 'story-1',
                 title: 'The Boy Who Chased the Sun',
-                author: 'Eleanor Blackwood',
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/16616d12-f9f4-47eb-b668-0f3819001cc5/Picsart_22-05-17_00-52-25-337.jpg?format=1000w',
                 isUnlocked: true,
@@ -57,7 +56,6 @@ Until the day the shield cracked.`,
             {
                 id: 'story-2',
                 title: 'The Boy Who Chased the Sun',
-                author: 'Eleanor Blackwood',
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/3ff28187-7600-46dc-ace8-e1dc5651586c/5-of-cups.jpg?format=1000w',
                 isUnlocked: true,
@@ -135,7 +133,6 @@ And though he couldn't laugh anymore, his hands stayed clean.`,
             {
                 id: 'story-3',
                 title: 'Where His Shadow Fell, the World Was Lighter',
-                author: 'Isabella Rodriguez',
                 description: 'A man gives joy like breath—effortless, endless, until the wind changes.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/df1cae60-a1f2-4726-8f60-5f463d6e5f3e/thefool.jpg?format=1000w',
                 isUnlocked: false,
@@ -177,7 +174,6 @@ The world is heavy. But he is not.
             {
                 id: 'story-4',
                 title: 'The man who fled in circles',
-                author: 'Eleanor Blackwood',
                 description: 'A man dissembles himself, piece by piece, until a note whispers his true name.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/d910d2fd-7fd0-44c1-8a01-fb0741e63226/8-of-swords.jpg?format=1000w',
                 isUnlocked: false,
@@ -203,7 +199,6 @@ His handsbetrayed him most. Still moved to bless himself the old way when passin
             {
                 id: 'story-5',
                 title: 'The Boy Who Chased the Sun',
-                author: 'Eleanor Blackwood',
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/3ff28187-7600-46dc-ace8-e1dc5651586c/5-of-cups.jpg?format=1000w',
                 isUnlocked: false,
@@ -312,7 +307,6 @@ The performance had found its audience at last.`,
             {
                 id: 'story-6',
                 title: 'The Man Who Swallowed the Sun',
-                author: 'Eleanor Blackwood',
                 description: 'A man blazes so bright, he forgets fire needs fuel—and darkness needs no pardon.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/7060a105-bf22-4375-b581-347a63667b2d/Knight_Wands_reversed.jpg?format=2500w',
                 isUnlocked: false,
@@ -357,7 +351,6 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
             {
                 id: 'story-7',
                 title: 'The Boy Who Chased the Sun',
-                author: 'Eleanor Blackwood',
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/3ff28187-7600-46dc-ace8-e1dc5651586c/5-of-cups.jpg?format=1000w',
                 isUnlocked: false,
@@ -479,7 +472,6 @@ But that night, beneath a sky that had long forgotten how to witness miracles, t
             {
                 id: 'story-8',
                 title: 'His shadow, the spotlight',
-                author: 'Eleanor Blackwood',
                 description: 'A performer tends his dying props, rehearsing a love scene no one will attend.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/2adb63b1-c418-4f17-9e3c-dc8c56636bf3/7-of-cups.jpg?format=1000w',
                 isUnlocked: false,
@@ -540,7 +532,6 @@ The rose's remaining petals grew more perfect as they brittled. He'd trained the
             {
                 id: 'story-9',
                 title: 'The Constellation of Maybe',
-                author: 'Eleanor Blackwood',
                 description: 'A lover walks the knife’s edge between what if and even so, counting his heartbeats like prayers',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/ff53f175-b9c1-4a97-b204-f818bbbe3cf9/Picsart_22-05-17_00-45-59-771.jpg?format=2500w',
                 isUnlocked: false,
@@ -590,7 +581,6 @@ But for now, he walked.
             {
                 id: 'story-10',
                 title: 'His shadow, the spotlight',
-                author: 'Eleanor Blackwood',
                 description: 'A performer tends his dying props, rehearsing a love scene no one will attend.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/2adb63b1-c418-4f17-9e3c-dc8c56636bf3/7-of-cups.jpg?format=1000w',
                 isUnlocked: false,
@@ -683,9 +673,8 @@ To drink the proof of his own bleeding.`,
             {
                 id: 'story-11',
                 title: 'The Constellation of Maybe',
-                author: 'Eleanor Blackwood',
                 description: 'A lover walks the knife’s edge between what if and even so, counting his heartbeats like prayers.',
-                cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w',
+                cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/2b09c678-696c-4173-b700-c367151a0654/6-of-cups.jpg?format=1000w',
                 isUnlocked: false,
                 unlockOrder: 1,
                 chapters: [
@@ -758,7 +747,6 @@ As a map home.
             {
                 id: 'story-12',
                 title: 'The Boy Who Chased the Sun',
-                author: 'Eleanor Blackwood',
                 description: 'A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.',
                 cover: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w',
                 isUnlocked: false,

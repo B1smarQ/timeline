@@ -26,12 +26,22 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
 
     return (
         <motion.div
-            className={`relative bg-gray-800 rounded-lg overflow-hidden border transition-all duration-300 ${story.isUnlocked
-                ? 'border-gray-700 hover:border-primary-500 cursor-pointer'
-                : 'border-gray-800 opacity-60'
-                }`}
-            whileHover={story.isUnlocked ? { scale: 1.02, y: -2 } : {}}
+            className={`relative mystery-card rounded-xl overflow-hidden border transition-all duration-500 ${story.isUnlocked
+                ? 'border-purple-500/30 hover:border-purple-400/60 cursor-pointer glow'
+                : 'border-gray-700/30 opacity-50'
+                } backdrop-blur-md`}
+            whileHover={story.isUnlocked ? {
+                scale: 1.05,
+                y: -8,
+                rotateY: 5,
+                rotateX: 5
+            } : {}}
+            whileTap={story.isUnlocked ? { scale: 0.98 } : {}}
             onClick={handleClick}
+            style={{
+                transformStyle: 'preserve-3d',
+                perspective: '1000px'
+            }}
         >
             {/* Story Cover */}
             <div className="min-h-72 h-32 relative">
@@ -62,10 +72,15 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
                             <span>Progress</span>
                             <span>{readChapters}/{totalChapters} chapters</span>
                         </div>
-                        <div className="w-full bg-gray-700 rounded-full h-1.5">
-                            <div
-                                className="bg-primary-500 h-1.5 rounded-full transition-all duration-300"
-                                style={{ width: `${progressPercent}%` }}
+                        <div className="w-full bg-gray-800/60 rounded-full h-2 overflow-hidden">
+                            <motion.div
+                                className="bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full"
+                                initial={{ width: 0 }}
+                                animate={{ width: `${progressPercent}%` }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                                style={{
+                                    boxShadow: '0 0 10px rgba(139, 92, 246, 0.5)'
+                                }}
                             />
                         </div>
                     </div>

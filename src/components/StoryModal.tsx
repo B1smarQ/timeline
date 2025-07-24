@@ -16,17 +16,18 @@ export const StoryModal: React.FC = () => {
     return (
         <AnimatePresence>
             <motion.div
-                className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => selectStory(null)}
             >
                 <motion.div
-                    className="bg-gray-800 rounded-lg max-w-3xl w-full max-h-[85vh] overflow-y-auto"
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.9, opacity: 0 }}
+                    className="mystery-card rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto glow backdrop-blur-xl"
+                    initial={{ scale: 0.8, opacity: 0, rotateX: -15 }}
+                    animate={{ scale: 1, opacity: 1, rotateX: 0 }}
+                    exit={{ scale: 0.8, opacity: 0, rotateX: 15 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     onClick={(e) => e.stopPropagation()}
                 >
                     {/* Header */}
