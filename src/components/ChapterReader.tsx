@@ -4,6 +4,7 @@ import { X, ArrowLeft, Check, Play, Pause, Loader2, CheckCircle } from 'lucide-r
 import ReactMarkdown from 'react-markdown';
 import { TypewriterMarkdown } from './TypewriterMarkdown';
 import { useAppStore } from '../store';
+import { useSound } from '../hooks/useSound';
 
 export const ChapterReader: React.FC = () => {
     const {
@@ -19,6 +20,7 @@ export const ChapterReader: React.FC = () => {
     const [typewriterComplete, setTypewriterComplete] = useState(false);
     const [isMarkingAsRead, setIsMarkingAsRead] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const { playSound } = useSound();
 
     // Reset typewriter state when chapter changes
     React.useEffect(() => {
@@ -31,6 +33,7 @@ export const ChapterReader: React.FC = () => {
 
     const handleMarkAsRead = async () => {
         setIsMarkingAsRead(true);
+        playSound('click');
 
         // Add a small delay to show loading state
         await new Promise(resolve => setTimeout(resolve, 300));
@@ -38,6 +41,7 @@ export const ChapterReader: React.FC = () => {
         const stage = stages.find(s => s.stories.some(story => story.id === selectedStory.id));
         if (stage) {
             markChapterAsRead(stage.id, selectedStory.id, selectedChapter.id);
+            playSound('success');
             setShowSuccess(true);
 
             // Hide success message after animation

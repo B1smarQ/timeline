@@ -4,6 +4,7 @@ import { Lock, CheckCircle } from 'lucide-react';
 import { StoryCover } from './StoryCover';
 import { Story } from '../types';
 import { useAppStore } from '../store';
+import { useSound } from '../hooks/useSound';
 
 interface StoryCardProps {
     story: Story;
@@ -12,6 +13,7 @@ interface StoryCardProps {
 
 export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
     const { selectStory } = useAppStore();
+    const { playSound } = useSound();
 
     const readChapters = story.chapters.filter(ch => ch.isRead).length;
     const totalChapters = story.chapters.length;
@@ -20,7 +22,14 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
 
     const handleClick = () => {
         if (story.isUnlocked) {
+            playSound('click');
             selectStory(story);
+        }
+    };
+
+    const handleHover = () => {
+        if (story.isUnlocked) {
+            playSound('hover');
         }
     };
 
@@ -38,6 +47,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
             } : {}}
             whileTap={story.isUnlocked ? { scale: 0.98 } : {}}
             onClick={handleClick}
+            onHoverStart={handleHover}
             style={{
                 transformStyle: 'preserve-3d',
                 perspective: '1000px'

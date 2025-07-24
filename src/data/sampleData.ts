@@ -191,7 +191,7 @@ So he became a draft dodger of the self.
 
 He sanded down his vowels until no accent could catch on them. Learned to laugh in the new way—sharp at the front of the mouth, like a door slamming shut. When they asked "Where are you from?" he'd shrug and say "Here" in a tone that made the word mean nothing at all.
 
-His handsbetrayed him most. Still moved to bless himself the old way when passing churches. Still shaped the air when telling stories he no longer allowed himself to speak. Eventually, he took to wearing gloves—not the thick working kind, but thin leather ones that made his gestures look borrowed.`,
+His hands betrayed him most. They still moved to bless himself the old way when passing churches. Still shaped the air when telling stories he no longer allowed himself to speak. Eventually, he took to wearing gloves—not the thick working kind, but thin leather ones that made his gestures look borrowed.`,
                         isRead: false,
                     }
                 ]
@@ -554,9 +554,9 @@ A Shared Umbrella in Sudden Rain = The Universe Tilting
 
 The fear was real. It curled at the edges of his coffee cup in the mornings, pooled in the hollow of his pillow at night. But it was not the director of this story, merely a passenger.
 
-When she laughed, the sound was not a verdict but a weather pattern—something that happened to the air between them, not to him alone. When she was silent, it was not rejection but the necessary pause between movements in a symphony still being composed.
+When he laughed, the sound was not a verdict but a weather pattern—something that happened to the air between them, not to him alone. When he was silent, it was not rejection but the necessary pause between movements in a symphony still being composed.
 
-He did not armor himself against the no that might come. Instead, he practiced the art of tender observation: the way her fingers hesitated near the sugar bowl, how her shadow crossed his on the pavement like a temporary bridge. These were not guarantees, only evidence that love—like light—exists whether we witness it or not.
+He did not armor himself against the no that might come. Instead, he practiced the art of tender observation: the way his fingers hesitated near the sugar bowl, how his shadow crossed his on the pavement like a temporary bridge. These were not guarantees, only evidence that love—like light—exists whether we witness it or not.
 
 The path did not waver. His feet knew their way.
 
@@ -695,9 +695,9 @@ A Shared Umbrella in Sudden Rain = The Universe Tilting
 
 The fear was real. It curled at the edges of his coffee cup in the mornings, pooled in the hollow of his pillow at night. But it was not the director of this story, merely a passenger.
 
-When she laughed, the sound was not a verdict but a weather pattern—something that happened to the air between them, not to him alone. When she was silent, it was not rejection but the necessary pause between movements in a symphony still being composed.
+When he laughed, the sound was not a verdict but a weather pattern—something that happened to the air between them, not to him alone. When he was silent, it was not rejection but the necessary pause between movements in a symphony still being composed.
 
-He did not armor himself against the no that might come. Instead, he practiced the art of tender observation: the way her fingers hesitated near the sugar bowl, how her shadow crossed his on the pavement like a temporary bridge. These were not guarantees, only evidence that love—like light—exists whether we witness it or not.
+He did not armor himself against the no that might come. Instead, he practiced the art of tender observation: the way his fingers hesitated near the sugar bowl, how his shadow crossed his on the pavement like a temporary bridge. These were not guarantees, only evidence that love—like light—exists whether we witness it or not.
 
 The path did not waver. His feet knew their way.
 
@@ -724,11 +724,11 @@ The shattered mime, whose cracks mirrored his own—a constellation of fractures
 
 Here, in this crooked house at the edge of silence, the star prince learned a new astronomy:
 
-- How to let his voice break without fearing the sky would collapse.
+- ***How to let his voice break without fearing the sky would collapse.***
 
-- How to rest his forehead against another’s pulse and hear the universe humming back.
+- ***How to rest his forehead against another’s pulse and hear the universe humming back.***
 
-- How to exist as something beyond a celestial body—as simply a body, mortal and trembling.
+- ***How to exist as something beyond a celestial body—as simply a body, mortal and trembling.***
 
 At dawn, when the world began its hungry clamor again, they wove him a crown not of light, but of breath and fingerprints and whispered truths.
 

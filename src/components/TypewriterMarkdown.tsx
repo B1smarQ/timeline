@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import { useSound } from '../hooks/useSound';
 
 interface TypewriterMarkdownProps {
     content: string;
@@ -18,6 +19,7 @@ export const TypewriterMarkdown: React.FC<TypewriterMarkdownProps> = ({
     const [displayedContent, setDisplayedContent] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isComplete, setIsComplete] = useState(false);
+    const { playSound } = useSound();
 
     // Clean content for character-by-character display
     const cleanContent = useMemo(() => {
@@ -38,6 +40,11 @@ export const TypewriterMarkdown: React.FC<TypewriterMarkdownProps> = ({
             const timer = setTimeout(() => {
                 setDisplayedContent(prev => prev + currentChar);
                 setCurrentIndex(prev => prev + 1);
+
+                // Play typewriter sound occasionally (not every character to avoid noise)
+                if (Math.random() < 0.1) {
+                    playSound('typewriter');
+                }
             }, charSpeed);
 
             return () => clearTimeout(timer);

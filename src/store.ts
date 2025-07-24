@@ -27,6 +27,8 @@ export const useAppStore = create<AppState>()(
             selectedChapter: null,
             showWelcome: true,
             setShowWelcome: (show: boolean) => set({ showWelcome: show }),
+            showEnding: false,
+            setShowEnding: (show: boolean) => set({ showEnding: show }),
 
             setCurrentStage: (stage: number) => set({ currentStage: stage }),
 
@@ -57,6 +59,9 @@ export const useAppStore = create<AppState>()(
 
                 // Check if we can unlock the next stage
                 get().unlockNextStage();
+
+                // Check if all content is completed
+                get().checkForCompletion();
             },
 
             selectStory: (story) => set({ selectedStory: story, selectedChapter: null }),
@@ -161,7 +166,22 @@ export const useAppStore = create<AppState>()(
                     selectedStory: null,
                     selectedChapter: null,
                     showWelcome: true,
+                    showEnding: false,
                 });
+            },
+
+            checkForCompletion: () => {
+                const { stages } = get();
+                const allStagesUnlocked = stages.every(stage => stage.isUnlocked);
+                const allChaptersRead = stages.every(stage =>
+                    stage.stories.filter(story => story.isUnlocked).every(story =>
+                        story.chapters.every(chapter => chapter.isRead)
+                    )
+                );
+
+                if (allStagesUnlocked && allChaptersRead) {
+                    set({ showEnding: true });
+                }
             },
         }),
         {

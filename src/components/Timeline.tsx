@@ -25,10 +25,10 @@ export const Timeline: React.FC = () => {
                     <motion.div
                         key={`dot-${stage.id}`}
                         className={`absolute w-4 h-4 rounded-full ${index === currentStage
-                                ? 'bg-purple-400 animate-timeline-dot-pulse'
-                                : index < currentStage
-                                    ? 'bg-green-400 animate-timeline-dot-glow'
-                                    : 'bg-gray-600 animate-timeline-dot-twinkle'
+                            ? 'bg-purple-400 animate-timeline-dot-pulse'
+                            : index < currentStage
+                                ? 'bg-green-400 animate-timeline-dot-glow'
+                                : 'bg-gray-600 animate-timeline-dot-twinkle'
                             }`}
                         style={{
                             top: `${(index / Math.max(stages.length - 1, 1)) * 100}%`,
@@ -40,7 +40,7 @@ export const Timeline: React.FC = () => {
                 ))}
             </div>
 
-            <div className="space-y-40 py-20">
+            <div className="space-y-20 py-12">
                 {stages.map((stage, index) => (
                     <motion.div
                         key={stage.id}
@@ -57,7 +57,6 @@ export const Timeline: React.FC = () => {
                     >
                         <TimelineStage
                             stage={stage}
-                            index={index}
                             isActive={index === currentStage}
                             isPast={index < currentStage}
                         />

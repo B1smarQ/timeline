@@ -36,6 +36,10 @@ export interface AppState {
     showWelcome: boolean;
     setShowWelcome: (show: boolean) => void;
 
+    // Ending modal state
+    showEnding: boolean;
+    setShowEnding: (show: boolean) => void;
+
     // Actions
     setCurrentStage: (stage: number) => void;
     setFontSize: (size: 'small' | 'medium' | 'large') => void;
@@ -45,4 +49,5 @@ export interface AppState {
     unlockNextStories: (stageId: string) => void;
     unlockNextStage: () => void;
     resetProgress: () => void;
+    checkForCompletion: () => void;
 }

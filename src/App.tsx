@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Timeline } from './components/Timeline';
 import { StoryModal } from './components/StoryModal';
@@ -8,12 +7,39 @@ import { TimelineScrollbar } from './components/TimelineScrollbar';
 import { ParticleSystem, FloatingOrbs } from './components/ParticleSystem';
 import { useAppStore } from './store';
 import { WelcomeModal } from './components/WelcomeModal';
+import { EndingModal } from './components/EndingModal';
+import { AudioManager } from './components/AudioManager';
 
 function App() {
-    const { selectedStory, selectedChapter, showWelcome, setShowWelcome } = useAppStore();
+    const {
+        selectedStory,
+        selectedChapter,
+        showWelcome,
+        setShowWelcome,
+        showEnding,
+        setShowEnding,
+        resetProgress
+    } = useAppStore();
 
     const handleCloseWelcome = () => {
         setShowWelcome(false);
+    };
+
+    const handleRestartJourney = () => {
+        resetProgress();
+        setShowEnding(false);
+    };
+
+    const handleCloseEnding = () => {
+        setShowEnding(false);
+    };
+
+    // Determine current scene for audio
+    const getCurrentScene = () => {
+        if (showWelcome) return 'welcome';
+        if (showEnding) return 'ending';
+        if (selectedChapter) return 'reading';
+        return 'timeline';
     };
 
     return (
@@ -22,7 +48,19 @@ function App() {
             <ParticleSystem />
             <FloatingOrbs />
 
+            {/* Audio Manager */}
+            <AudioManager
+                currentScene={getCurrentScene() as 'welcome' | 'timeline' | 'reading' | 'ending'}
+                isReading={!!selectedChapter}
+                storyMood="mysterious"
+            />
+
             <WelcomeModal show={showWelcome} onClose={handleCloseWelcome} />
+            <EndingModal
+                show={showEnding}
+                onRestart={handleRestartJourney}
+                onClose={handleCloseEnding}
+            />
             {!showWelcome && (
                 <motion.div
                     initial={{ opacity: 0 }}
