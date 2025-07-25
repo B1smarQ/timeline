@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX, Settings } from 'lucide-react';
+import { Howl } from 'howler';
 
 interface AudioManagerProps {
     currentScene: 'welcome' | 'timeline' | 'reading' | 'ending';
@@ -8,91 +9,112 @@ interface AudioManagerProps {
     storyMood?: 'mysterious' | 'melancholic' | 'hopeful' | 'dramatic';
 }
 
-// Web Audio API based sound generator
-class SoundGenerator {
-    private audioContext: AudioContext | null = null;
-    private masterGain: GainNode | null = null;
-    private ambientGain: GainNode | null = null;
-    private effectsGain: GainNode | null = null;
+class AmbientSoundManager {
+    private currentSound: Howl | null = null;
+    private currentMood: string | null = null;
+    private masterVolume: number = 0.3;
+    private ambientVolume: number = 0.4;
 
     constructor() {
-        this.initAudio();
+        // Initialize with default volumes
     }
 
-    private async initAudio() {
-        try {
-            this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-            this.masterGain = this.audioContext.createGain();
-            this.ambientGain = this.audioContext.createGain();
-            this.effectsGain = this.audioContext.createGain();
-
-            this.masterGain.connect(this.audioContext.destination);
-            this.ambientGain.connect(this.masterGain);
-            this.effectsGain.connect(this.masterGain);
-
-            this.masterGain.gain.value = 0.3;
-            this.ambientGain.gain.value = 0.4;
-            this.effectsGain.gain.value = 0.6;
-        } catch (error) {
-            console.warn('Web Audio API not supported:', error);
+    playMoodAmbient(mood: string) {
+        // Check if we're already playing the correct mood
+        if (this.currentSound && this.currentSound.playing() && this.currentMood === mood) {
+            console.log(`Already playing ${mood} mood ambient, not restarting`);
+            return;
         }
+
+        // Stop current sound if switching moods
+        this.stopCurrentSound();
+
+        // Use mood-based ambient track
+        const soundUrl = `/sounds/ambient/${mood}.mp3`;
+        console.log(`Starting ${mood} mood ambient: ${soundUrl}`);
+
+        this.currentMood = mood;
+        this.currentSound = new Howl({
+            src: [soundUrl],
+            loop: true,
+            volume: this.masterVolume * this.ambientVolume,
+            autoplay: true,
+            onload: () => console.log(`Successfully loaded ${mood} ambient: ${soundUrl}`),
+            onloaderror: (_id, error) => {
+                console.error(`Failed to load ${mood} ambient: ${soundUrl}`, error);
+                // Try alternative names for this mood
+                const alternatives = [
+                    `/sounds/ambient/ambient-${mood}.mp3`,
+                    `/sounds/ambient/${mood}-ambient.mp3`,
+                    `/sounds/ambient/timeline-${mood}.mp3`, // Fallback to existing files
+                    `/sounds/ambient/welcome-${mood}.mp3`,
+                    `/sounds/ambient/reading-${mood}.mp3`
+                ];
+
+                this.tryAlternativeFiles(alternatives, 0, mood);
+            },
+            onplayerror: (_id, error) => {
+                console.error(`Error playing ${mood} ambient: ${soundUrl}`, error);
+            }
+        });
     }
 
-    // Generate ambient space sounds
-    generateSpaceAmbient() {
-        if (!this.audioContext || !this.ambientGain) return null;
+    private tryAlternativeFiles(alternatives: string[], index: number, mood: string) {
+        if (index >= alternatives.length) {
+            console.error(`Could not load any ${mood} ambient sound files`);
+            return;
+        }
 
-        const oscillator = this.audioContext.createOscillator();
-        const gain = this.audioContext.createGain();
-        const filter = this.audioContext.createBiquadFilter();
+        const soundUrl = alternatives[index];
+        console.log(`Trying alternative ${mood} ambient file: ${soundUrl}`);
 
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(60, this.audioContext.currentTime);
-
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(200, this.audioContext.currentTime);
-
-        gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-        gain.gain.linearRampToValueAtTime(0.1, this.audioContext.currentTime + 2);
-
-        oscillator.connect(filter);
-        filter.connect(gain);
-        gain.connect(this.ambientGain);
-
-        return { oscillator, gain };
+        this.currentSound = new Howl({
+            src: [soundUrl],
+            loop: true,
+            volume: this.masterVolume * this.ambientVolume,
+            autoplay: true,
+            onload: () => console.log(`Successfully loaded alternative ${mood}: ${soundUrl}`),
+            onloaderror: () => {
+                console.warn(`Failed to load: ${soundUrl}`);
+                this.tryAlternativeFiles(alternatives, index + 1, mood);
+            }
+        });
     }
 
-    // Generate UI interaction sounds
-    playClickSound() {
-        if (!this.audioContext || !this.effectsGain) return;
-
-        const oscillator = this.audioContext.createOscillator();
-        const gain = this.audioContext.createGain();
-
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(800, this.audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(400, this.audioContext.currentTime + 0.1);
-
-        gain.gain.setValueAtTime(0.1, this.audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.1);
-
-        oscillator.connect(gain);
-        gain.connect(this.effectsGain);
-
-        oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 0.1);
+    stopCurrentSound() {
+        if (this.currentSound) {
+            this.currentSound.stop();
+            this.currentSound.unload();
+            this.currentSound = null;
+        }
+        this.currentMood = null;
     }
 
     setMasterVolume(volume: number) {
-        if (this.masterGain) {
-            this.masterGain.gain.setValueAtTime(volume, this.audioContext?.currentTime || 0);
+        this.masterVolume = volume;
+        if (this.currentSound) {
+            this.currentSound.volume(this.masterVolume * this.ambientVolume);
         }
     }
 
     setAmbientVolume(volume: number) {
-        if (this.ambientGain) {
-            this.ambientGain.gain.setValueAtTime(volume, this.audioContext?.currentTime || 0);
+        this.ambientVolume = volume;
+        if (this.currentSound) {
+            this.currentSound.volume(this.masterVolume * this.ambientVolume);
         }
+    }
+
+    // Simple UI sound effects using Howler
+    playUISound(type: 'click' | 'hover' | 'success') {
+        console.log(`Would play UI sound: ${type}`);
+
+        // Example of how you would load UI sound files:
+        // const uiSound = new Howl({
+        //     src: [`/sounds/ui/${type}.mp3`],
+        //     volume: 0.3,
+        //     onloaderror: () => console.warn(`Could not load UI sound: ${type}`)
+        // });
+        // uiSound.play();
     }
 }
 
@@ -101,65 +123,47 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
     isReading,
     storyMood = 'mysterious'
 }) => {
-    // Use parameters to avoid TS warnings
-    console.debug('Audio scene:', currentScene, 'Reading:', isReading, 'Mood:', storyMood);
-
     const [isEnabled, setIsEnabled] = useState(false);
     const [showControls, setShowControls] = useState(false);
     const [masterVolume, setMasterVolume] = useState(0.3);
     const [ambientVolume, setAmbientVolume] = useState(0.4);
-    const soundGeneratorRef = useRef<SoundGenerator | null>(null);
-    const ambientSoundRef = useRef<{ oscillator: OscillatorNode; gain: GainNode } | null>(null);
+    const soundManagerRef = useRef<AmbientSoundManager | null>(null);
 
     useEffect(() => {
-        soundGeneratorRef.current = new SoundGenerator();
+        soundManagerRef.current = new AmbientSoundManager();
         return () => {
-            if (ambientSoundRef.current) {
-                ambientSoundRef.current.oscillator.stop();
-            }
+            soundManagerRef.current?.stopCurrentSound();
         };
     }, []);
 
     useEffect(() => {
-        if (isEnabled && soundGeneratorRef.current) {
-            startAmbientSound();
+        if (isEnabled && soundManagerRef.current) {
+            soundManagerRef.current.playMoodAmbient(storyMood);
         } else {
-            stopAmbientSound();
+            soundManagerRef.current?.stopCurrentSound();
         }
-    }, [isEnabled, currentScene]);
+    }, [isEnabled, storyMood]); // Depend on isEnabled and storyMood, not scene
 
-    const startAmbientSound = () => {
-        if (ambientSoundRef.current) {
-            ambientSoundRef.current.oscillator.stop();
+    // Log scene changes without interrupting audio
+    useEffect(() => {
+        if (isEnabled) {
+            console.log(`Scene changed to: ${currentScene} - ${storyMood} mood audio continues`);
         }
-
-        const ambient = soundGeneratorRef.current?.generateSpaceAmbient();
-        if (ambient) {
-            ambientSoundRef.current = ambient;
-            ambient.oscillator.start();
-        }
-    };
-
-    const stopAmbientSound = () => {
-        if (ambientSoundRef.current) {
-            ambientSoundRef.current.oscillator.stop();
-            ambientSoundRef.current = null;
-        }
-    };
+    }, [currentScene, isEnabled]);
 
     const handleVolumeChange = (type: 'master' | 'ambient', value: number) => {
         if (type === 'master') {
             setMasterVolume(value);
-            soundGeneratorRef.current?.setMasterVolume(value);
+            soundManagerRef.current?.setMasterVolume(value);
         } else {
             setAmbientVolume(value);
-            soundGeneratorRef.current?.setAmbientVolume(value);
+            soundManagerRef.current?.setAmbientVolume(value);
         }
     };
 
     const playInteractionSound = () => {
         if (isEnabled) {
-            soundGeneratorRef.current?.playClickSound();
+            soundManagerRef.current?.playUISound('click');
         }
     };
 
@@ -209,6 +213,17 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
                         exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     >
                         <div className="space-y-3">
+                            {/* Scene Indicator */}
+                            <div className="text-center mb-3">
+                                <div className="text-xs text-purple-300 mb-1">Current Scene</div>
+                                <div className="text-sm font-medium text-white capitalize">
+                                    {currentScene} {isReading && '(Reading)'}
+                                </div>
+                                <div className="text-xs text-purple-400 capitalize">
+                                    {storyMood} mood
+                                </div>
+                            </div>
+
                             <div>
                                 <label className="text-xs text-purple-200 mb-1 block">Master Volume</label>
                                 <input
@@ -232,6 +247,44 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
                                     onChange={(e) => handleVolumeChange('ambient', parseFloat(e.target.value))}
                                     className="w-full accent-purple-500"
                                 />
+                            </div>
+
+                            {/* Test button */}
+                            <button
+                                onClick={() => {
+                                    const moods = ['mysterious', 'melancholic', 'hopeful', 'dramatic'];
+                                    const testFiles: string[] = [];
+
+                                    // Test mood-based files
+                                    moods.forEach(mood => {
+                                        testFiles.push(`/sounds/ambient/${mood}.mp3`);
+                                        testFiles.push(`/sounds/ambient/ambient-${mood}.mp3`);
+                                        testFiles.push(`/sounds/ambient/timeline-${mood}.mp3`);
+                                    });
+
+                                    console.log('Testing mood-based ambient files...');
+                                    testFiles.forEach(testUrl => {
+                                        fetch(testUrl)
+                                            .then(response => {
+                                                if (response.ok) {
+                                                    console.log(`✅ ${testUrl} - accessible`);
+                                                } else {
+                                                    console.log(`❌ ${testUrl} - not found`);
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error(`❌ ${testUrl} - error:`, error);
+                                            });
+                                    });
+                                }}
+                                className="w-full text-xs bg-purple-600/20 hover:bg-purple-600/30 text-purple-200 py-1 px-2 rounded transition-colors"
+                            >
+                                Test Mood Files
+                            </button>
+
+                            {/* Note about sound files */}
+                            <div className="text-xs text-gray-400 mt-2 text-center">
+                                Check console for file loading details
                             </div>
                         </div>
                     </motion.div>

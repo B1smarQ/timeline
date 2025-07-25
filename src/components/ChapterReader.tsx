@@ -155,6 +155,16 @@ export const ChapterReader: React.FC = () => {
                                 >
                                     {selectedStory.title}
                                 </motion.p>
+                                {selectedChapter.description && (
+                                    <motion.p
+                                        className="text-sm text-gray-300 opacity-70 mt-2 italic max-w-2xl mx-auto"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 0.7 }}
+                                    >
+                                        {selectedChapter.description}
+                                    </motion.p>
+                                )}
                             </div>
                         </div>
 
@@ -255,7 +265,14 @@ export const ChapterReader: React.FC = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
                         >
-                            <span>Chapter {selectedStory.chapters.findIndex(ch => ch.id === selectedChapter.id) + 1} of {selectedStory.chapters.length}</span>
+                            <div className="flex items-center gap-4">
+                                <span>Chapter {selectedStory.chapters.findIndex(ch => ch.id === selectedChapter.id) + 1} of {selectedStory.chapters.length}</span>
+                                {selectedChapter.mood && (
+                                    <span className="px-2 py-1 bg-purple-500/20 border border-purple-400/30 rounded-md text-xs capitalize">
+                                        {selectedChapter.mood} mood
+                                    </span>
+                                )}
+                            </div>
                             <span>{selectedChapter.isRead ? 'Completed' : 'In Progress'}</span>
                         </motion.div>
 

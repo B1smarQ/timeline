@@ -179,32 +179,22 @@ class SoundEffects {
     }
 
     play(effect: SoundEffect) {
-        switch (effect) {
-            case 'click':
-                this.playClick();
-                break;
-            case 'hover':
-                this.playHover();
-                break;
-            case 'success':
-                this.playSuccess();
-                break;
-            case 'unlock':
-                this.playUnlock();
-                break;
-            case 'page-turn':
-                this.playPageTurn();
-                break;
-            case 'typewriter':
-                this.playTypewriter();
-                break;
-            case 'whoosh':
-                this.playWhoosh();
-                break;
-            case 'chime':
-                this.playChime();
-                break;
-        }
+        // For now, just log the sound effect instead of playing harsh sounds
+        console.log(`Sound effect: ${effect}`);
+
+        // In a real implementation, you would load actual sound files:
+        // switch (effect) {
+        //     case 'click':
+        //         new Howl({ src: ['/sounds/ui/click.mp3'], volume: 0.3 }).play();
+        //         break;
+        //     case 'hover':
+        //         new Howl({ src: ['/sounds/ui/hover.mp3'], volume: 0.2 }).play();
+        //         break;
+        //     case 'success':
+        //         new Howl({ src: ['/sounds/ui/success.mp3'], volume: 0.4 }).play();
+        //         break;
+        //     // ... etc
+        // }
     }
 }
 

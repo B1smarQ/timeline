@@ -43,6 +43,17 @@ function App() {
         return 'timeline';
     };
 
+    // Determine current mood for audio
+    const getCurrentMood = (): 'mysterious' | 'melancholic' | 'hopeful' | 'dramatic' => {
+        // If reading a chapter, use the chapter's mood or default to mysterious
+        if (selectedChapter) {
+            return selectedChapter.mood || 'mysterious';
+        }
+
+        // Default mood for other scenes
+        return 'mysterious';
+    };
+
     return (
         <div className="min-h-screen text-white relative overflow-hidden">
             {/* Background Effects */}
@@ -53,7 +64,7 @@ function App() {
             <AudioManager
                 currentScene={getCurrentScene() as 'welcome' | 'timeline' | 'reading' | 'ending'}
                 isReading={!!selectedChapter}
-                storyMood="mysterious"
+                storyMood={getCurrentMood()}
             />
 
             <WelcomeModal show={showWelcome} onClose={handleCloseWelcome} />

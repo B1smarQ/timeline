@@ -1,8 +1,10 @@
 export interface Chapter {
     id: string;
     title: string;
+    description?: string; // Brief description of the chapter (optional)
     content: string; // Markdown content
     isRead: boolean;
+    mood?: 'mysterious' | 'melancholic' | 'hopeful' | 'dramatic'; // Optional mood for ambient audio
 }
 
 export interface Story {
