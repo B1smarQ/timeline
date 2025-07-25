@@ -548,8 +548,11 @@ The possibility lived in his ribs like a second heartbeat. What if. What if. Wha
 He knew the equations:
 
 Distance x Time = Either Or
+
 Silence + Averted Eyes = Perhaps Not
+
 But then—
+
 A Shared Umbrella in Sudden Rain = The Universe Tilting
 
 The fear was real. It curled at the edges of his coffee cup in the mornings, pooled in the hollow of his pillow at night. But it was not the director of this story, merely a passenger.
@@ -560,7 +563,7 @@ He did not armor himself against the no that might come. Instead, he practiced t
 
 The path did not waver. His feet knew their way.
 
-And if someday she turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
+And if someday he turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
 
 But for now, he walked.
 `,
@@ -670,7 +673,7 @@ To drink the proof of his own bleeding.`,
                     },
                     {
                         id: 'ch-10-4',
-                        title:'The Mime\'s Final Monologue',
+                        title: 'The Mime\'s Final Monologue',
                         content: `# The Mime's Final Monologue
 The stage was empty.
 
@@ -736,7 +739,7 @@ He did not armor himself against the no that might come. Instead, he practiced t
 
 The path did not waver. His feet knew their way.
 
-And if someday she turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
+And if someday he turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
 
 But for now, he walked.
 `,
@@ -817,7 +820,7 @@ and simply let it be.
 `,
                         isRead: false,
                     },
-                    
+
                 ]
             },
 

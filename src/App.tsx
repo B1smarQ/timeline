@@ -83,7 +83,21 @@ function App() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
                     >
-                        <FontSizeControls />
+                        <div className="flex flex-col gap-4 items-end">
+                            <FontSizeControls />
+                            {/* Development Button for Credits */}
+                            {true && (
+                                < motion.button
+                                    className="px-3 py-2 text-xs bg-purple-600/20 border border-purple-400/30 rounded-lg text-purple-200 hover:bg-purple-600/30 transition-colors backdrop-blur-sm"
+                                    onClick={() => setShowEnding(true)}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    title="Show Credits (Dev Only)"
+                                >
+                                    Credits
+                                </motion.button>
+                            )}
+                        </div>
                     </motion.header>
 
                     {/* Timeline Scrollbar */}
@@ -123,8 +137,9 @@ function App() {
                         )}
                     </AnimatePresence>
                 </motion.div>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 }
 
