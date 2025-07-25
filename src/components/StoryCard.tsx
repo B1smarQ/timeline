@@ -11,41 +11,47 @@ interface StoryCardProps {
     stageId: string;
 }
 
-export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
-    const { selectStory } = useAppStore();
+export const StoryCard: React.FC<StoryCardProps> = ({ story: initialStory, stageId }) => {
+    const { selectStory, stages } = useAppStore();
     const { playSound } = useSound();
 
-    const readChapters = story.chapters.filter(ch => ch.isRead).length;
-    const totalChapters = story.chapters.length;
+    // Get the current story data from the store to ensure we have the latest state
+    const currentStory = React.useMemo(() => {
+        const stage = stages.find(s => s.id === stageId);
+        return stage?.stories.find(s => s.id === initialStory.id) || initialStory;
+    }, [stages, stageId, initialStory.id, initialStory]);
+
+    const readChapters = currentStory.chapters.filter(ch => ch.isRead).length;
+    const totalChapters = currentStory.chapters.length;
     const isCompleted = readChapters === totalChapters;
     const progressPercent = (readChapters / totalChapters) * 100;
 
     const handleClick = () => {
-        if (story.isUnlocked) {
+        if (currentStory.isUnlocked) {
             playSound('click');
-            selectStory(story);
+            selectStory(currentStory);
         }
     };
 
     const handleHover = () => {
-        if (story.isUnlocked) {
+        if (currentStory.isUnlocked) {
             playSound('hover');
         }
     };
 
     return (
         <motion.div
-            className={`relative mystery-card rounded-xl overflow-hidden border transition-all duration-500 ${story.isUnlocked
+            className={`relative mystery-card rounded-xl overflow-hidden border transition-all duration-500 ${currentStory.isUnlocked
                 ? 'border-purple-500/30 hover:border-purple-400/60 cursor-pointer glow'
                 : 'border-gray-700/30 opacity-50'
                 } backdrop-blur-md`}
-            whileHover={story.isUnlocked ? {
+            whileHover={currentStory.isUnlocked ? {
                 scale: 1.05,
                 y: -8,
                 rotateY: 5,
                 rotateX: 5
             } : {}}
-            whileTap={story.isUnlocked ? { scale: 0.98 } : {}}
+            whileTap={currentStory.isUnlocked ? { scale: 0.98 } : {}}
             onClick={handleClick}
             onHoverStart={handleHover}
             style={{
@@ -55,10 +61,10 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
         >
             {/* Story Cover */}
             <div className="min-h-72 h-32 relative">
-                {story.isUnlocked ? (
+                {currentStory.isUnlocked ? (
                     <StoryCover
-                        cover={story.cover}
-                        title={story.title}
+                        cover={currentStory.cover}
+                        title={currentStory.title}
                         className="w-full h-full"
                     />
                 ) : (
@@ -70,13 +76,13 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
 
             <div className="p-4">
                 <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-extrabold text-lg md:text-xl text-white decoration-primary-400 break-words leading-tight">{story.title}</h3>
+                    <h3 className="font-extrabold text-lg md:text-xl text-white decoration-primary-400 break-words leading-tight">{currentStory.title}</h3>
                     {isCompleted && <CheckCircle size={16} className="text-green-500 flex-shrink-0 ml-2" />}
                 </div>
 
-                <p className="text-sm text-gray-300 mb-3 line-clamp-2">{story.description}</p>
+                <p className="text-sm text-gray-300 mb-3 line-clamp-2">{currentStory.description}</p>
 
-                {story.isUnlocked && (
+                {currentStory.isUnlocked && (
                     <div className="space-y-2">
                         <div className="flex justify-between text-xs text-gray-400">
                             <span>Progress</span>
@@ -96,7 +102,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
                     </div>
                 )}
 
-                {!story.isUnlocked && (
+                {!currentStory.isUnlocked && (
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                         <Lock size={12} />
                         <span>Complete previous stories to unlock</span>

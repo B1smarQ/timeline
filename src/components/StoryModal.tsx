@@ -5,9 +5,20 @@ import { StoryCover } from './StoryCover';
 import { useAppStore } from '../store';
 
 export const StoryModal: React.FC = () => {
-    const { selectedStory, selectStory, selectChapter } = useAppStore();
+    const { selectedStory, selectStory, selectChapter, stages } = useAppStore();
 
-    if (!selectedStory) return null;
+    // Get the current story data from the store to ensure we have the latest state
+    const currentStory = React.useMemo(() => {
+        if (!selectedStory) return null;
+
+        for (const stage of stages) {
+            const story = stage.stories.find(s => s.id === selectedStory.id);
+            if (story) return story;
+        }
+        return selectedStory;
+    }, [selectedStory, stages]);
+
+    if (!currentStory) return null;
 
     const handleChapterClick = (chapter: any) => {
         selectChapter(chapter);
@@ -48,16 +59,16 @@ export const StoryModal: React.FC = () => {
                         <div className="flex gap-6 mb-8">
                             <div className="flex-shrink-0 min-h-72 h-auto flex items-center">
                                 <StoryCover
-                                    cover={selectedStory.cover}
-                                    title={selectedStory.title}
+                                    cover={currentStory.cover}
+                                    title={currentStory.title}
                                     className="w-48 h-72 object-contain"
                                 />
                             </div>
 
                             <div className="flex-1 flex flex-col justify-center">
                                 <div className="mb-4">
-                                    <h2 className="text-2xl font-bold text-white mb-2">{selectedStory.title}</h2>
-                                    <p className="text-gray-300 leading-relaxed">{selectedStory.description}</p>
+                                    <h2 className="text-2xl font-bold text-white mb-2">{currentStory.title}</h2>
+                                    <p className="text-gray-300 leading-relaxed">{currentStory.description}</p>
                                 </div>
 
                                 {/* Progress indicator */}
@@ -65,14 +76,14 @@ export const StoryModal: React.FC = () => {
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="text-sm font-medium text-gray-300">Reading Progress</span>
                                         <span className="text-sm text-gray-400">
-                                            {selectedStory.chapters.filter(ch => ch.isRead).length} / {selectedStory.chapters.length} chapters
+                                            {currentStory.chapters.filter(ch => ch.isRead).length} / {currentStory.chapters.length} chapters
                                         </span>
                                     </div>
                                     <div className="w-full bg-gray-600 rounded-full h-2">
                                         <div
                                             className="bg-primary-500 h-2 rounded-full transition-all duration-300"
                                             style={{
-                                                width: `${(selectedStory.chapters.filter(ch => ch.isRead).length / selectedStory.chapters.length) * 100}%`
+                                                width: `${(currentStory.chapters.filter(ch => ch.isRead).length / currentStory.chapters.length) * 100}%`
                                             }}
                                         />
                                     </div>
@@ -82,7 +93,7 @@ export const StoryModal: React.FC = () => {
 
                         <h3 className="text-lg font-semibold text-white mb-4 text-center">Chapters</h3>
                         <div className="space-y-3">
-                            {selectedStory.chapters.map((chapter, index) => (
+                            {currentStory.chapters.map((chapter, index) => (
                                 <motion.button
                                     key={chapter.id}
                                     className={`w-full text-left p-4 rounded-lg border transition-all duration-200 ${chapter.isRead

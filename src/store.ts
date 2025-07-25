@@ -36,6 +36,8 @@ export const useAppStore = create<AppState>()(
 
             markChapterAsRead: (stageId: string, storyId: string, chapterId: string) => {
                 const { stages } = get();
+                console.log('Marking chapter as read:', { stageId, storyId, chapterId });
+
                 const updatedStages = stages.map(stage => {
                     if (stage.id === stageId) {
                         const updatedStories = stage.stories.map(story => {
@@ -43,6 +45,7 @@ export const useAppStore = create<AppState>()(
                                 const updatedChapters = story.chapters.map(chapter =>
                                     chapter.id === chapterId ? { ...chapter, isRead: true } : chapter
                                 );
+
                                 return { ...story, chapters: updatedChapters };
                             }
                             return story;
