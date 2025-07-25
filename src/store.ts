@@ -29,6 +29,8 @@ export const useAppStore = create<AppState>()(
             setShowWelcome: (show: boolean) => set({ showWelcome: show }),
             showEnding: false,
             setShowEnding: (show: boolean) => set({ showEnding: show }),
+            stageUnlockNotification: null,
+            setStageUnlockNotification: (notification) => set({ stageUnlockNotification: notification }),
 
             setCurrentStage: (stage: number) => set({ currentStage: stage }),
 
@@ -145,6 +147,7 @@ export const useAppStore = create<AppState>()(
 
                 if (stageCompleted && currentStage < stages.length - 1) {
                     const nextStageIndex = currentStage + 1;
+                    const nextStage = stages[nextStageIndex];
                     const updatedStages = stages.map((stage, index) => {
                         if (index === nextStageIndex) {
                             // Unlock the next stage and initialize its first stories
@@ -157,7 +160,17 @@ export const useAppStore = create<AppState>()(
                         }
                         return stage;
                     });
-                    set({ stages: updatedStages, currentStage: nextStageIndex });
+
+                    // Trigger stage unlock notification
+                    set({
+                        stages: updatedStages,
+                        currentStage: nextStageIndex,
+                        stageUnlockNotification: {
+                            stageTitle: nextStage.title,
+                            stageIndex: nextStageIndex,
+                            stageId: nextStage.id
+                        }
+                    });
                 }
             },
 
@@ -170,6 +183,7 @@ export const useAppStore = create<AppState>()(
                     selectedChapter: null,
                     showWelcome: true,
                     showEnding: false,
+                    stageUnlockNotification: null,
                 });
             },
 

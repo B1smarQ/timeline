@@ -216,7 +216,7 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
                                                     }}
                                                     transition={{ duration: 3, repeat: Infinity }}
                                                 >
-                                                    Thank You
+                                                    Ephemera
                                                 </motion.h1>
 
                                                 <motion.div
@@ -225,7 +225,8 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
                                                     animate={{ opacity: 1 }}
                                                     transition={{ delay: 1.5 }}
                                                 >
-                                                    For experiencing this journey
+                                                    Gratitude, like starlight,
+                                                    arrives long after the source has gone dark.
                                                 </motion.div>
                                                 <motion.div
                                                     className="text-xl md:text-2xl text-purple-200/80 font-light tracking-wide"
@@ -233,7 +234,9 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
                                                     animate={{ opacity: 1 }}
                                                     transition={{ delay: 1.5 }}
                                                 >
-                                                    These pages will be archived and lost to history shortly after you've witnessed them
+                                                    These words were never meant to linger—
+                                                    fugitive sparks against the night,
+                                                    already dissolving as you read them.
                                                 </motion.div>
                                                 <motion.div
                                                     className="text-xl md:text-2xl text-purple-200/80 font-light tracking-wide"
@@ -241,7 +244,28 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
                                                     animate={{ opacity: 1 }}
                                                     transition={{ delay: 1.5 }}
                                                 >
-                                                    If you wish to see them again, they will remain avaliable at https://github.com/b1smarq/timeline/tree/master/src/data
+                                                    The archive will swallow them whole
+                                                    by next tide.
+                                                </motion.div>
+                                                <motion.div
+                                                    className="text-xl md:text-2xl text-purple-200/80 font-light tracking-wide"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    transition={{ delay: 1.5 }}
+                                                >
+                                                    But for the patient wanderer,
+                                                    a single path remains:
+                                                    https://github.com/b1smarq/timeline/tree/master/src/data
+                                                </motion.div>
+                                                <motion.div
+                                                    className="text-xl md:text-2xl text-purple-200/80 font-light tracking-wide"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    transition={{ delay: 1.5 }}
+                                                >
+                                                    Where the ghosts of these stories
+                                                    dance a little longer
+                                                    in the cathedral of zeros and ones.
                                                 </motion.div>
                                             </motion.div>
 

@@ -9,6 +9,7 @@ import { useAppStore } from './store';
 import { WelcomeModal } from './components/WelcomeModal';
 import { EndingModal } from './components/EndingModal';
 import { AudioManager } from './components/AudioManager';
+import { StageUnlockNotification } from './components/StageUnlockNotification';
 
 function App() {
     const {
@@ -61,6 +62,7 @@ function App() {
                 onRestart={handleRestartJourney}
                 onClose={handleCloseEnding}
             />
+            <StageUnlockNotification />
             {!showWelcome && (
                 <motion.div
                     initial={{ opacity: 0 }}

@@ -40,6 +40,10 @@ export interface AppState {
     showEnding: boolean;
     setShowEnding: (show: boolean) => void;
 
+    // Stage unlock notification
+    stageUnlockNotification: { stageTitle: string; stageIndex: number; stageId: string } | null;
+    setStageUnlockNotification: (notification: { stageTitle: string; stageIndex: number; stageId: string } | null) => void;
+
     // Actions
     setCurrentStage: (stage: number) => void;
     setFontSize: (size: 'small' | 'medium' | 'large') => void;
