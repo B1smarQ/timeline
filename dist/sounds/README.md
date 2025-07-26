@@ -70,6 +70,15 @@ If you already have multiple ambient files (like `timeline-mysterious.mp3`, `wel
 
 Use the "Test Mood Files" button in the audio controls to check which mood-based files are accessible.
 
+## Deployment Notes
+
+The audio system automatically handles different deployment environments:
+
+- **Local development**: Files served from `http://localhost:5173/sounds/ambient/`
+- **GitHub Pages**: Files served from `https://b1smarq.github.io/timeline/sounds/ambient/`
+
+The system uses Vite's `import.meta.env.BASE_URL` to automatically construct the correct paths for your deployment environment.
+
 ## How It Works
 
 1. **Default mood** is "mysterious" for all scenes and chapters
