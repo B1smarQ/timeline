@@ -183,15 +183,16 @@ class SoundEffects {
         console.log(`Sound effect: ${effect}`);
 
         // In a real implementation, you would load actual sound files:
+        // const basePath = import.meta.env.BASE_URL || '/';
         // switch (effect) {
         //     case 'click':
-        //         new Howl({ src: ['/sounds/ui/click.mp3'], volume: 0.3 }).play();
+        //         new Howl({ src: [`${basePath}sounds/ui/click.mp3`], volume: 0.3 }).play();
         //         break;
         //     case 'hover':
-        //         new Howl({ src: ['/sounds/ui/hover.mp3'], volume: 0.2 }).play();
+        //         new Howl({ src: [`${basePath}sounds/ui/hover.mp3`], volume: 0.2 }).play();
         //         break;
         //     case 'success':
-        //         new Howl({ src: ['/sounds/ui/success.mp3'], volume: 0.4 }).play();
+        //         new Howl({ src: [`${basePath}sounds/ui/success.mp3`], volume: 0.4 }).play();
         //         break;
         //     // ... etc
         // }

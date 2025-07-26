@@ -12,8 +12,8 @@ interface AudioManagerProps {
 class AmbientSoundManager {
     private currentSound: Howl | null = null;
     private currentMood: string | null = null;
-    private masterVolume: number = 0.3;
-    private ambientVolume: number = 0.4;
+    private masterVolume: number = 1.0;
+    private ambientVolume: number = 1.0;
 
     constructor() {
         // Initialize with default volumes
@@ -29,8 +29,9 @@ class AmbientSoundManager {
         // Stop current sound if switching moods
         this.stopCurrentSound();
 
-        // Use mood-based ambient track
-        const soundUrl = `/sounds/ambient/${mood}.mp3`;
+        // Use mood-based ambient track with correct base path for GitHub Pages
+        const basePath = import.meta.env.BASE_URL || '/';
+        const soundUrl = `${basePath}sounds/ambient/${mood}.mp3`;
         console.log(`Starting ${mood} mood ambient: ${soundUrl}`);
 
         this.currentMood = mood;
@@ -44,11 +45,11 @@ class AmbientSoundManager {
                 console.error(`Failed to load ${mood} ambient: ${soundUrl}`, error);
                 // Try alternative names for this mood
                 const alternatives = [
-                    `/sounds/ambient/ambient-${mood}.mp3`,
-                    `/sounds/ambient/${mood}-ambient.mp3`,
-                    `/sounds/ambient/timeline-${mood}.mp3`, // Fallback to existing files
-                    `/sounds/ambient/welcome-${mood}.mp3`,
-                    `/sounds/ambient/reading-${mood}.mp3`
+                    `${basePath}sounds/ambient/ambient-${mood}.mp3`,
+                    `${basePath}sounds/ambient/${mood}-ambient.mp3`,
+                    `${basePath}sounds/ambient/timeline-${mood}.mp3`, // Fallback to existing files
+                    `${basePath}sounds/ambient/welcome-${mood}.mp3`,
+                    `${basePath}sounds/ambient/reading-${mood}.mp3`
                 ];
 
                 this.tryAlternativeFiles(alternatives, 0, mood);
@@ -109,8 +110,9 @@ class AmbientSoundManager {
         console.log(`Would play UI sound: ${type}`);
 
         // Example of how you would load UI sound files:
+        // const basePath = import.meta.env.BASE_URL || '/';
         // const uiSound = new Howl({
-        //     src: [`/sounds/ui/${type}.mp3`],
+        //     src: [`${basePath}sounds/ui/${type}.mp3`],
         //     volume: 0.3,
         //     onloaderror: () => console.warn(`Could not load UI sound: ${type}`)
         // });
@@ -123,10 +125,10 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
     isReading,
     storyMood = 'mysterious'
 }) => {
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(true);
     const [showControls, setShowControls] = useState(false);
-    const [masterVolume, setMasterVolume] = useState(0.3);
-    const [ambientVolume, setAmbientVolume] = useState(0.4);
+    const [masterVolume, setMasterVolume] = useState(1.0);
+    const [ambientVolume, setAmbientVolume] = useState(1.0);
     const soundManagerRef = useRef<AmbientSoundManager | null>(null);
 
     useEffect(() => {
@@ -256,10 +258,11 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
                                     const testFiles: string[] = [];
 
                                     // Test mood-based files
+                                    const basePath = import.meta.env.BASE_URL || '/';
                                     moods.forEach(mood => {
-                                        testFiles.push(`/sounds/ambient/${mood}.mp3`);
-                                        testFiles.push(`/sounds/ambient/ambient-${mood}.mp3`);
-                                        testFiles.push(`/sounds/ambient/timeline-${mood}.mp3`);
+                                        testFiles.push(`${basePath}sounds/ambient/${mood}.mp3`);
+                                        testFiles.push(`${basePath}sounds/ambient/ambient-${mood}.mp3`);
+                                        testFiles.push(`${basePath}sounds/ambient/timeline-${mood}.mp3`);
                                     });
 
                                     console.log('Testing mood-based ambient files...');

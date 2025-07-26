@@ -34,7 +34,7 @@ export const creditsData: CreditEntry[] = [
     },
     {
         role: "The Mime",
-        name: "[REDACTED]",
+        name: "Strov_VB",
         image: "https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/2adb63b1-c418-4f17-9e3c-dc8c56636bf3/7-of-cups.jpg?format=1000w",
         delay: 9
     },
