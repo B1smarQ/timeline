@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { AppState, TimelineStage } from './types';
+import { SupportedLanguage } from './types/localization';
+import { loadStoryData } from './data/dataLoader';
 import { sampleData } from './data/sampleData';
 
 const initializeStages = (stages: TimelineStage[]): TimelineStage[] => {
@@ -22,11 +24,15 @@ export const useAppStore = create<AppState>()(
         (set, get) => ({
             currentStage: 0,
             fontSize: 'medium',
-            stages: initializeStages(sampleData),
+            stages: [],
             selectedStory: null,
             selectedChapter: null,
+            currentLanguage: 'en' as SupportedLanguage,
+            isLoadingData: false,
             showWelcome: true,
             setShowWelcome: (show: boolean) => set({ showWelcome: show }),
+            showLanguageSelection: false,
+            setShowLanguageSelection: (show: boolean) => set({ showLanguageSelection: show }),
             showEnding: false,
             setShowEnding: (show: boolean) => set({ showEnding: show }),
             stageUnlockNotification: null,
@@ -182,6 +188,7 @@ export const useAppStore = create<AppState>()(
                     selectedStory: null,
                     selectedChapter: null,
                     showWelcome: true,
+                    showLanguageSelection: false,
                     showEnding: false,
                     stageUnlockNotification: null,
                 });
@@ -198,6 +205,213 @@ export const useAppStore = create<AppState>()(
 
                 if (allStagesUnlocked && allChaptersRead) {
                     set({ showEnding: true });
+                }
+            },
+
+            // Helper method to merge progress from old data with new language data
+            mergeProgressWithNewData: (newData: TimelineStage[], oldData: TimelineStage[]): TimelineStage[] => {
+                return newData.map(newStage => {
+                    const oldStage = oldData.find(stage => stage.id === newStage.id);
+                    if (!oldStage) return newStage;
+
+                    const updatedStories = newStage.stories.map(newStory => {
+                        const oldStory = oldStage.stories.find(story => story.id === newStory.id);
+                        if (!oldStory) return newStory;
+
+                        const updatedChapters = newStory.chapters.map(newChapter => {
+                            const oldChapter = oldStory.chapters.find(chapter => chapter.id === newChapter.id);
+                            return {
+                                ...newChapter,
+                                isRead: oldChapter ? oldChapter.isRead : newChapter.isRead
+                            };
+                        });
+
+                        return {
+                            ...newStory,
+                            chapters: updatedChapters,
+                            isUnlocked: oldStory.isUnlocked
+                        };
+                    });
+
+                    return {
+                        ...newStage,
+                        stories: updatedStories,
+                        isUnlocked: oldStage.isUnlocked
+                    };
+                });
+            },
+
+            // Language methods
+            setLanguage: async (language: SupportedLanguage) => {
+                const currentLang = get().currentLanguage;
+                if (currentLang === language) return;
+
+                console.log(`🌍 Switching language from ${currentLang} to ${language}`);
+
+                // Clear current data to force reload
+                set({
+                    stages: [],
+                    currentLanguage: language,
+                    selectedStory: null,
+                    selectedChapter: null
+                });
+
+                await get().loadDataForLanguage(language);
+            },
+
+            loadDataForLanguage: async (language: SupportedLanguage) => {
+                const { stages: currentStages } = get();
+
+                // Don't reload if we already have data and it's the same language
+                const currentLang = get().currentLanguage;
+                if (currentStages.length > 0 && currentLang === language && !get().isLoadingData) {
+                    console.log(`✅ Data already loaded for language: ${language}`);
+                    return;
+                }
+
+                console.log(`🔄 Loading data: currentLang=${currentLang}, requestedLang=${language}, hasStages=${currentStages.length > 0}`);
+
+                set({ isLoadingData: true });
+
+                try {
+                    console.log(`📚 Loading story data for language: ${language}`);
+                    const data = await loadStoryData(language);
+                    const initializedData = initializeStages(data);
+
+                    // Preserve progress from current stages if switching languages
+                    let finalData = initializedData;
+                    const preserveCurrentStage = get().currentStage;
+                    if (currentStages.length > 0 && currentLang !== language) {
+                        console.log(`🔄 Preserving progress when switching from ${currentLang} to ${language}`);
+                        finalData = get().mergeProgressWithNewData(initializedData, currentStages);
+                    }
+
+                    set({
+                        stages: finalData,
+                        isLoadingData: false,
+                        currentLanguage: language,
+                        // Preserve current stage when switching languages
+                        currentStage: currentStages.length > 0 && currentLang !== language ? preserveCurrentStage : get().currentStage,
+                        // Reset selections when changing language
+                        selectedStory: null,
+                        selectedChapter: null
+                    });
+
+                    // After loading new data, check if any stages should be unlocked
+                    // This is especially important when switching languages and preserving progress
+                    setTimeout(() => {
+                        // Check for story unlocks in all stages
+                        finalData.forEach(stage => {
+                            if (stage.isUnlocked) {
+                                get().unlockNextStories(stage.id);
+                            }
+                        });
+                        // Check for stage unlocks
+                        get().unlockNextStage();
+                    }, 100);
+
+                    console.log(`✅ Successfully loaded data for language: ${language}`);
+                } catch (error) {
+                    console.error(`❌ Failed to load data for language: ${language}`, error);
+
+                    // Fallback to English if not already English
+                    if (language !== 'en') {
+                        console.log(`🔄 Falling back to English due to error`);
+                        try {
+                            const fallbackData = await loadStoryData('en');
+                            const initializedFallbackData = initializeStages(fallbackData);
+
+                            // Preserve progress even in fallback
+                            const finalFallbackData = currentStages.length > 0
+                                ? get().mergeProgressWithNewData(initializedFallbackData, currentStages)
+                                : initializedFallbackData;
+                            const preserveCurrentStage = get().currentStage;
+
+                            set({
+                                stages: finalFallbackData,
+                                isLoadingData: false,
+                                currentLanguage: 'en', // Force to English
+                                currentStage: currentStages.length > 0 ? preserveCurrentStage : get().currentStage,
+                                selectedStory: null,
+                                selectedChapter: null
+                            });
+
+                            // After loading fallback data, check if any stages should be unlocked
+                            setTimeout(() => {
+                                // Check for story unlocks in all stages
+                                finalFallbackData.forEach(stage => {
+                                    if (stage.isUnlocked) {
+                                        get().unlockNextStories(stage.id);
+                                    }
+                                });
+                                // Check for stage unlocks
+                                get().unlockNextStage();
+                            }, 100);
+
+                            console.log(`✅ Successfully loaded fallback English data`);
+                        } catch (fallbackError) {
+                            console.error(`❌ Failed to load fallback English data:`, fallbackError);
+
+                            // Last resort: use the imported sampleData
+                            const lastResortData = initializeStages(sampleData);
+                            const finalLastResortData = currentStages.length > 0
+                                ? get().mergeProgressWithNewData(lastResortData, currentStages)
+                                : lastResortData;
+                            const preserveCurrentStage = get().currentStage;
+
+                            set({
+                                stages: finalLastResortData,
+                                isLoadingData: false,
+                                currentLanguage: 'en',
+                                currentStage: currentStages.length > 0 ? preserveCurrentStage : get().currentStage,
+                                selectedStory: null,
+                                selectedChapter: null
+                            });
+
+                            // After loading last resort data, check if any stages should be unlocked
+                            setTimeout(() => {
+                                // Check for story unlocks in all stages
+                                finalLastResortData.forEach(stage => {
+                                    if (stage.isUnlocked) {
+                                        get().unlockNextStories(stage.id);
+                                    }
+                                });
+                                // Check for stage unlocks
+                                get().unlockNextStage();
+                            }, 100);
+
+                            console.log(`⚠️ Using last resort sample data`);
+                        }
+                    } else {
+                        // If English fails, use the imported sampleData as last resort
+                        console.log(`🚨 English failed, using imported sample data`);
+                        const lastResortData = initializeStages(sampleData);
+                        const finalLastResortData = currentStages.length > 0
+                            ? get().mergeProgressWithNewData(lastResortData, currentStages)
+                            : lastResortData;
+                        const preserveCurrentStage = get().currentStage;
+
+                        set({
+                            stages: finalLastResortData,
+                            isLoadingData: false,
+                            currentLanguage: 'en',
+                            currentStage: currentStages.length > 0 ? preserveCurrentStage : get().currentStage,
+                            selectedStory: null,
+                            selectedChapter: null
+                        });
+
+                        // After loading last resort data, check if any stages should be unlocked
+                        setTimeout(() => {
+                            // Check for story unlocks in all stages
+                            finalLastResortData.forEach(stage => {
+                                if (stage.isUnlocked) {
+                                    get().unlockNextStories(stage.id);
+                                }
+                            });
+                            // Check for stage unlocks
+                            get().unlockNextStage();
+                        }, 100);
+                    }
                 }
             },
         }),

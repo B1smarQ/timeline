@@ -4,9 +4,17 @@ import { useAppStore } from '../store';
 import { TimelineStage } from './TimelineStage';
 
 export const Timeline: React.FC = () => {
-    const { stages, currentStage } = useAppStore();
+    const { stages, currentStage, currentLanguage } = useAppStore();
     const { scrollYProgress } = useScroll();
     const timelineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+
+    // Debug logging
+    React.useEffect(() => {
+        console.log(`📊 Timeline: Language=${currentLanguage}, Stages=${stages.length}`);
+        if (stages.length > 0) {
+            console.log(`📊 First stage title: "${stages[0].title}"`);
+        }
+    }, [currentLanguage, stages]);
 
     return (
         <div className="relative">

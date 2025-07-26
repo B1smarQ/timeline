@@ -5,6 +5,7 @@ import { StoryCover } from './StoryCover';
 import { Story } from '../types';
 import { useAppStore } from '../store';
 import { useSound } from '../hooks/useSound';
+import { useLocalization } from '../hooks/useLocalization';
 
 interface StoryCardProps {
     story: Story;
@@ -12,6 +13,7 @@ interface StoryCardProps {
 }
 
 export const StoryCard: React.FC<StoryCardProps> = ({ story: initialStory, stageId }) => {
+    const { t } = useLocalization();
     const { selectStory, stages } = useAppStore();
     const { playSound } = useSound();
 
@@ -105,7 +107,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story: initialStory, stage
                 {!currentStory.isUnlocked && (
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                         <Lock size={12} />
-                        <span>Complete previous stories to unlock</span>
+                        <span>{t.timeline.completePrevious}</span>
                     </div>
                 )}
             </div>

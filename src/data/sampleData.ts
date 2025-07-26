@@ -67,7 +67,7 @@ Until the day the shield cracked.`,
                         id: 'ch-2-1',
                         title: 'The Unbroken Song',
                         description: 'A child\'s laughter echoes through a dying city, masking the drumbeats of approaching war.',
-                        mood: 'dramatic',
+                        mood: 'hopeful',
                         content: `# The Unbroken Song
 
 The boy knew only one truth: the world was kind.
@@ -148,6 +148,7 @@ And though he couldn't laugh anymore, his hands stayed clean.`,
                         id: 'ch-3-1',
                         title: 'The man who walked with laughter',
                         description: 'A man walks through the world like a brush dipped in gold, painting joy onto every cracked surface he touches',
+                        mood: "hopeful",
                         content: `# The man who walked with laughter
 
 The world is heavy. Hearts grow weary, shoulders bend beneath invisible burdens. Men toil, women weep, and children forget how to laugh.
@@ -190,6 +191,7 @@ The world is heavy. But he is not.
                         id: 'ch-4-1',
                         title: 'The Art of Unbelonging',
                         description: 'He scrubs his tongue raw on foreign vowels, stitching his mouth around a language that never fits—each word a shallow grave for the mother tongue he buried.',
+                        mood: "dramatic",
                         content: `# The art of unbelonging
 He built his disappearance brick by brick.
 
@@ -216,6 +218,7 @@ His hands betrayed him most. They still moved to bless himself the old way when 
                         id: 'ch-5-1',
                         title: 'The Unbroken Song',
                         description: 'A child\'s laughter echoes through a dying city, masking the drumbeats of approaching war.',
+                        mood: "hopeful",
                         content: `# The Unbroken Song
 
 The boy knew only one truth: the world was kind.
@@ -240,6 +243,7 @@ Until the day the shield cracked.`,
                         id: 'ch-5-2',
                         title: 'The Note That Stole Laughter',
                         description: "A love letter flutters into his hands like a wounded bird, its three words silencing his joy forever.",
+                        mood: "melancholic",
                         content: `# The Note That Stole Laughter
 
 The war drums began, and the boy watched his world fracture.
@@ -273,6 +277,7 @@ And though he couldn't laugh anymore, his hands stayed clean.`,
                         id: 'ch-5-3',
                         title: 'The Collision of Wandering Stars',
                         description: "Two fractured souls orbit each other in the marketplace - a shadow and the boy who forgot how to smile.",
+                        mood: "dramatic",
                         content: `# The Collision of Wandering Stars 
 
 The boy who carried fire met the man who drank shadows.
@@ -327,6 +332,7 @@ The performance had found its audience at last.`,
                         id: 'ch-6-1',
                         title: 'The Symphony of Never-Ending Light',
                         description: "His laughter scorches tabletops where he leans, a supernova crammed into human skin—too brilliant to behold, too warm to abandon.",
+                        mood: "hopeful",
                         content: `# The Symphony of Never-Ending Light
 He spoke in exclamation marks, laughed in crescendos, and even his silences were just rests between movements. 
 
@@ -372,6 +378,7 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
                         id: 'ch-7-1',
                         title: 'The Unbroken Song',
                         description: "A child's laughter echoes through a dying city, masking the drumbeats of approaching war.",
+                        mood: "hopeful",
                         content: `# The Unbroken Song
     
     The boy knew only one truth: the world was kind.
@@ -396,6 +403,7 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
                         id: 'ch-7-2',
                         title: 'The Note That Stole Laughter',
                         description: "A love letter flutters into his hands like a wounded bird, its three words silencing his joy forever.",
+                        mood: "melancholic",
                         content: `# The Note That Stole Laughter
     
     The war drums began, and the boy watched his world fracture.
@@ -429,6 +437,7 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
                         id: 'ch-7-3',
                         title: 'The Collision of Wandering Stars',
                         description: "Two fractured souls orbit each other in the marketplace - a shadow and the boy who forgot how to smile.",
+                        mood: "dramatic",
                         content: `# The Collision of Wandering Stars 
     
     The boy who carried fire met the man who drank shadows.
@@ -458,6 +467,7 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
                         id: 'ch-7-4',
                         title: 'The Gravity of Two Falling Stars',
                         description: "When the flame illuminates his broken edges, the boy discovers scars can conduct light.",
+                        mood: "hopeful",
                         content: `# The Gravity of Two Falling Stars
 At first, they orbited—careful, measured, testing the pull between them.
 
@@ -497,6 +507,7 @@ But that night, beneath a sky that had long forgotten how to witness miracles, t
                         id: 'ch-8-1',
                         title: 'The Streetlight Sonata',
                         description: "A virtuoso of fabricated joy conducts symphonies for hollow-eyed crowds, his every gesture polished to blinding perfection—except when the streetlights flicker.",
+                        mood: "dramatic",
                         content: `# The Streetlight Sonata
 He moved through the city like a traveling revival of some forgotten opera—all sweeping gestures and dramatic pauses that turned sidewalk cracks into stage marks. 
 The war was a rumor written in someone else's alphabet, but here, where the shop awnings flapped like tired curtains, he performed as if the whole district were his velvet-boxed auditorium.
@@ -523,6 +534,7 @@ And the greatest performance is one where the audience never thinks to ask what'
                         id: 'ch-8-2',
                         title: 'Glass Box Sololiquy',
                         description: "Midnight finds him rehearsing love sonnets to a cracked mirror, while a dying rose watches from its glass coffin like a disapproving critic.",
+                        mood: "melancholic",
                         content: `# Glass Box Sololiquy
 The curtain fell the moment he locked his door.
 
@@ -559,6 +571,7 @@ The rose's remaining petals grew more perfect as they brittled. He'd trained the
                         id: 'ch-9-1',
                         title: 'The Language of Almost',
                         description: "He maps his absence in the negative space between stars—recording every almost-glance, almost-touch, almost-confession as forbidden constellations in his periphery.",
+                        mood: "mysterious",
                         content: `# The Language of Almost
 He walked toward love like an astronomer mapping stars—not with the blind faith of a worshipper, but with the quiet determination of one who trusts the sky even when clouds obscure it.
 
@@ -582,7 +595,7 @@ He did not armor himself against the no that might come. Instead, he practiced t
 
 The path did not waver. His feet knew their way.
 
-And if someday he turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
+And if someday the shadow-eater turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
 
 But for now, he walked.
 `,
@@ -612,6 +625,7 @@ But for now, he walked.
                         id: 'ch-10-1',
                         title: 'The Streetlight Sonata',
                         description: "A virtuoso of fabricated joy conducts symphonies for hollow-eyed crowds, his every gesture polished to blinding perfection—except when the streetlights flicker.",
+                        mood: "dramatic",
                         content: `# The Streetlight Sonata
 He moved through the city like a traveling revival of some forgotten opera—all sweeping gestures and dramatic pauses that turned sidewalk cracks into stage marks. 
 The war was a rumor written in someone else's alphabet, but here, where the shop awnings flapped like tired curtains, he performed as if the whole district were his velvet-boxed auditorium.
@@ -638,6 +652,7 @@ And the greatest performance is one where the audience never thinks to ask what'
                         id: 'ch-10-2',
                         title: 'Glass Box Sololiquy',
                         description: "Midnight finds him rehearsing love sonnets to a cracked mirror, while a dying rose watches from its glass coffin like a disapproving critic.",
+                        mood: "melancholic",
                         content: `# Glass Box Sololiquy
 The curtain fell the moment he locked his door.
 
@@ -664,6 +679,7 @@ The rose's remaining petals grew more perfect as they brittled. He'd trained the
                         id: 'ch-10-3',
                         title: 'The Glass Box Shatters in Quartet',
                         description: "Three pairs of hands press against his invisible cage—a fire-bearer, a shadow-eater, a star prince—until the glass fractures into a thousand glinting possibilities.",
+                        mood: "hopeful",
                         content: `# The Glass Box Shatters in Quartet
 The glass box had been his cathedral—a hallowed prison of his own design, where every gesture was liturgy and every silence a censored hymn.
 
@@ -697,6 +713,7 @@ To drink the proof of his own bleeding.`,
                         id: 'ch-10-4',
                         title: 'The Mime\'s Final Monologue',
                         description: "Center stage, he opens his mouth and lets the unscripted truth tumble out: raw, misshapen, and more beautiful than any performance he ever planned.",
+                        mood: "hopeful",
                         content: `# The Mime's Final Monologue
 The stage was empty.
 
@@ -743,6 +760,7 @@ Somewhere, a rose finally crumbled to dust.
                         id: 'ch-11-1',
                         title: 'The Language of Almost',
                         description: "He maps his absence in the negative space between stars—recording every almost-glance, almost-touch, almost-confession as forbidden constellations in his periphery.",
+                        mood: "mysterious",
                         content: `# The Language of Almost
 He walked toward love like an astronomer mapping stars—not with the blind faith of a worshipper, but with the quiet determination of one who trusts the sky even when clouds obscure it.
 
@@ -751,8 +769,11 @@ The possibility lived in his ribs like a second heartbeat. What if. What if. Wha
 He knew the equations:
 
 Distance x Time = Either Or
+
 Silence + Averted Eyes = Perhaps Not
+
 But then—
+
 A Shared Umbrella in Sudden Rain = The Universe Tilting
 
 The fear was real. It curled at the edges of his coffee cup in the mornings, pooled in the hollow of his pillow at night. But it was not the director of this story, merely a passenger.
@@ -763,7 +784,7 @@ He did not armor himself against the no that might come. Instead, he practiced t
 
 The path did not waver. His feet knew their way.
 
-And if someday he turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
+And if someday the shadow-eater turned to him and said "This isn't—", he would nod, and the sky would still be there. The stars would still be there.
 
 But for now, he walked.
 `,
@@ -773,6 +794,7 @@ But for now, he walked.
                         id: 'ch-11-2',
                         title: 'The Star Prince’s Refuge in the House of Burning Shadows',
                         description: "Three earthly anomalies teach him gravity works sideways for wayward celestial bodies.",
+                        mood: "hopeful",
                         content: `# The Star Prince’s Refuge in the House of Burning Shadows
 
 The world had always demanded his light—**a star is not meant to hide**, they said. But even supernovas grow weary of their own brilliance.
@@ -807,6 +829,7 @@ As a map home.
                         id: 'ch-11-3',
                         title: 'The Star Prince Drowns in Daylight',
                         description: "When he plucks his crown from the sky and offers it to mortal hands, the universe realigns—not in protest, but in aching relief.",
+                        mood: "hopeful",
                         content: `# The Star Prince Drowns in Daylight
 
 He had spent lifetimes mapping the distance between stars—
@@ -862,6 +885,7 @@ and simply let it be.
                         id: 'ch-12-1',
                         title: 'The Unbroken Song',
                         description: "A child's laughter echoes through a dying city, masking the drumbeats of approaching war.",
+                        mood: "hopeful",
                         content: `# The Unbroken Song
 
 The boy knew only one truth: the world was kind.
@@ -886,6 +910,7 @@ Until the day the shield cracked.`,
                         id: 'ch-12-2',
                         title: 'The Note That Stole Laughter',
                         description: "A love letter flutters into his hands like a wounded bird, its three words silencing his joy forever.",
+                        mood: "melancholic",
                         content: `# The Note That Stole Laughter
 
 The war drums began, and the boy watched his world fracture.
@@ -919,6 +944,7 @@ And though he couldn't laugh anymore, his hands stayed clean.`,
                         id: 'ch-12-3',
                         title: 'The Collision of Wandering Stars',
                         description: "Two fractured souls orbit each other in the marketplace - a shadow and the boy who forgot how to smile.",
+                        mood: "dramatic",
                         content: `# The Collision of Wandering Stars 
 
 The boy who carried fire met the man who drank shadows.
@@ -948,6 +974,7 @@ The performance had found its audience at last.`,
                         id: 'ch-12-4',
                         title: 'The Gravity of Two Falling Stars',
                         description: "When the flame illuminates his broken edges, the boy discovers scars can conduct light.",
+                        mood: "hopeful",
                         content: `# The Gravity of Two Falling Stars
                     At first, they orbited—careful, measured, testing the pull between them.
 

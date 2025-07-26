@@ -2,12 +2,14 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TypewriterMarkdown } from './TypewriterMarkdown';
 import { ParticleSystem, FloatingOrbs } from './ParticleSystem';
-import { BookOpen, Sparkles, ArrowRight } from 'lucide-react';
+import { BookOpen, Sparkles, ArrowRight, SkipForward } from 'lucide-react';
 import { useSound } from '../hooks/useSound';
+import { useLocalization } from '../hooks/useLocalization';
 
 interface WelcomeModalProps {
   show: boolean;
-  onClose: () => void;
+  onClose?: () => void;
+  onShowLanguageSelection: () => void;
 }
 
 const welcomeText = `These are the fragments of my life,
@@ -45,9 +47,14 @@ If these pages found you,
 
 it's because your heartbeat echoes in their margins.
 
+Time required: The span of a held breath (45 minutes) or a slow sunrise (55 minutes).
+
+Leave your footprints softly, if you choose to leave them at all.
+
 *Click below to begin your journey...*`;
 
-export const WelcomeModal: React.FC<WelcomeModalProps> = ({ show, onClose }) => {
+export const WelcomeModal: React.FC<WelcomeModalProps> = ({ show, onShowLanguageSelection }) => {
+  const { t } = useLocalization();
   const [titleDone, setTitleDone] = React.useState(false);
   const [contentDone, setContentDone] = React.useState(false);
   const { playSound } = useSound();
@@ -58,6 +65,23 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({ show, onClose }) => 
       setContentDone(false);
     }
   }, [show]);
+
+  // Keyboard shortcuts for testing
+  React.useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      // Skip intro with 'S' key
+      if (show && (event.key === 's' || event.key === 'S')) {
+        event.preventDefault();
+        playSound('click');
+        onShowLanguageSelection();
+      }
+    };
+
+    if (show) {
+      window.addEventListener('keydown', handleKeyPress);
+      return () => window.removeEventListener('keydown', handleKeyPress);
+    }
+  }, [show, onShowLanguageSelection, playSound]);
 
   return (
     <AnimatePresence>
@@ -97,6 +121,25 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({ show, onClose }) => 
 
               {/* Main Card */}
               <div className="relative mystery-card rounded-3xl backdrop-blur-xl border border-purple-500/20 text-center flex flex-col min-h-0">
+                {/* Skip Intro Button - Top Right */}
+                <motion.button
+                  className="absolute top-4 right-4 p-2 text-purple-300 hover:text-purple-100 bg-purple-600/20 hover:bg-purple-600/30 rounded-lg border border-purple-400/30 transition-all duration-300 backdrop-blur-sm z-10"
+                  onClick={() => {
+                    playSound('click');
+                    onShowLanguageSelection();
+                  }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 }}
+                  title="Skip Intro (Testing)"
+                >
+                  <div className="flex items-center gap-2 text-sm font-medium">
+                    <SkipForward size={16} />
+                    <span>Skip Intro</span>
+                  </div>
+                </motion.button>
 
                 {/* Header Section - Fixed */}
                 <div className="flex-shrink-0 p-8 md:p-12 pb-4">
@@ -185,7 +228,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({ show, onClose }) => 
                           className="group relative px-12 py-4 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xl shadow-2xl border border-purple-400/30 overflow-hidden"
                           onClick={() => {
                             playSound('chime');
-                            onClose();
+                            onShowLanguageSelection();
                           }}
                           whileHover={{ scale: 1.05, y: -2 }}
                           whileTap={{ scale: 0.98 }}
@@ -196,7 +239,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({ show, onClose }) => 
 
                           {/* Button Content */}
                           <div className="relative flex items-center gap-3">
-                            <span>Begin Journey</span>
+                            <span>{t.welcome.startJourney}</span>
                             <motion.div
                               animate={{ x: [0, 5, 0] }}
                               transition={{ duration: 1.5, repeat: Infinity }}

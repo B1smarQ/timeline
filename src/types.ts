@@ -34,9 +34,17 @@ export interface AppState {
     selectedStory: Story | null;
     selectedChapter: Chapter | null;
 
+    // Language support
+    currentLanguage: import('./types/localization').SupportedLanguage;
+    isLoadingData: boolean;
+
     // Welcome modal state
     showWelcome: boolean;
     setShowWelcome: (show: boolean) => void;
+
+    // Language selection panel state
+    showLanguageSelection: boolean;
+    setShowLanguageSelection: (show: boolean) => void;
 
     // Ending modal state
     showEnding: boolean;
@@ -56,4 +64,11 @@ export interface AppState {
     unlockNextStage: () => void;
     resetProgress: () => void;
     checkForCompletion: () => void;
+
+    // Language actions
+    setLanguage: (language: import('./types/localization').SupportedLanguage) => void;
+    loadDataForLanguage: (language: import('./types/localization').SupportedLanguage) => Promise<void>;
+    
+    // Helper methods
+    mergeProgressWithNewData: (newData: TimelineStage[], oldData: TimelineStage[]) => TimelineStage[];
 }

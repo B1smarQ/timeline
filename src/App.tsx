@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Timeline } from './components/Timeline';
 import { StoryModal } from './components/StoryModal';
@@ -10,20 +11,61 @@ import { WelcomeModal } from './components/WelcomeModal';
 import { EndingModal } from './components/EndingModal';
 import { AudioManager } from './components/AudioManager';
 import { StageUnlockNotification } from './components/StageUnlockNotification';
+import { LocalizationProvider, useLocalization } from './hooks/useLocalization';
+import { LanguageSelectionPanel } from './components/LanguageSelectionPanel';
+import { useLanguageSync } from './hooks/useLanguageSync';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
-function App() {
+const AppContent: React.FC = () => {
     const {
         selectedStory,
         selectedChapter,
         showWelcome,
         setShowWelcome,
+        showLanguageSelection,
+        setShowLanguageSelection,
         showEnding,
         setShowEnding,
-        resetProgress
+        resetProgress,
+        currentLanguage,
+        isLoadingData
     } = useAppStore();
+
+    const { t } = useLocalization();
+
+    // Sync language between store and localization
+    useLanguageSync();
+
+    // Debug logging
+    React.useEffect(() => {
+        console.log(`🌍 App: Current language = ${currentLanguage}, Loading = ${isLoadingData}`);
+    }, [currentLanguage, isLoadingData]);
+
+    // Note: Initial data loading is now handled in the LanguageSelectionPanel
+    // when the user selects a language, so we don't need to load it here
+
+    if (isLoadingData) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto mb-4"></div>
+                    <p className="text-purple-200 text-lg">{t.general.loading}</p>
+                </div>
+            </div>
+        );
+    }
 
     const handleCloseWelcome = () => {
         setShowWelcome(false);
+    };
+
+    const handleShowLanguageSelection = () => {
+        setShowWelcome(false);
+        setShowLanguageSelection(true);
+    };
+
+    const handleCloseLanguageSelection = () => {
+        setShowLanguageSelection(false);
     };
 
     const handleRestartJourney = () => {
@@ -38,6 +80,7 @@ function App() {
     // Determine current scene for audio
     const getCurrentScene = () => {
         if (showWelcome) return 'welcome';
+        if (showLanguageSelection) return 'welcome'; // Use welcome audio for language selection
         if (showEnding) return 'ending';
         if (selectedChapter) return 'reading';
         return 'timeline';
@@ -67,7 +110,15 @@ function App() {
                 storyMood={getCurrentMood()}
             />
 
-            <WelcomeModal show={showWelcome} onClose={handleCloseWelcome} />
+            <WelcomeModal 
+                show={showWelcome} 
+                onClose={handleCloseWelcome} 
+                onShowLanguageSelection={handleShowLanguageSelection} 
+            />
+            <LanguageSelectionPanel 
+                show={showLanguageSelection} 
+                onContinue={handleCloseLanguageSelection} 
+            />
             <EndingModal
                 show={showEnding}
                 onRestart={handleRestartJourney}
@@ -107,7 +158,7 @@ function App() {
                                     whileTap={{ scale: 0.95 }}
                                     title="Show Credits (Dev Only)"
                                 >
-                                    Credits
+                                    {t.ending.credits}
                                 </motion.button>
                             )}
                         </div>
@@ -135,7 +186,7 @@ function App() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.6, duration: 0.8 }}
                             >
-                                As I've Written
+                                {t.appTitle}
                             </motion.h1>
                             <Timeline />
                         </motion.div>
@@ -153,6 +204,16 @@ function App() {
             )
             }
         </div >
+    );
+};
+
+function App() {
+    return (
+        <ErrorBoundary>
+            <LocalizationProvider>
+                <AppContent />
+            </LocalizationProvider>
+        </ErrorBoundary>
     );
 }
 

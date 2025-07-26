@@ -6,8 +6,10 @@ import { TypewriterMarkdown } from './TypewriterMarkdown';
 import { ChapterSplashScreen } from './ChapterSplashScreen';
 import { useAppStore } from '../store';
 import { useSound } from '../hooks/useSound';
+import { useLocalization } from '../hooks/useLocalization';
 
 export const ChapterReader: React.FC = () => {
+    const { t } = useLocalization();
     const {
         selectedChapter,
         selectedStory,
@@ -264,7 +266,7 @@ export const ChapterReader: React.FC = () => {
                                             className="flex items-center gap-2 bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg"
                                         >
                                             <CheckCircle size={16} />
-                                            <span>Marked as read!</span>
+                                            <span>{t.reader.chapterCompleted}</span>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
@@ -304,11 +306,11 @@ export const ChapterReader: React.FC = () => {
                                     <span>Chapter {selectedStory.chapters.findIndex(ch => ch.id === selectedChapter.id) + 1} of {selectedStory.chapters.length}</span>
                                     {selectedChapter.mood && (
                                         <span className="px-2 py-1 bg-purple-500/20 border border-purple-400/30 rounded-md text-xs capitalize">
-                                            {selectedChapter.mood} mood
+                                            {t.moods[selectedChapter.mood as keyof typeof t.moods]} {t.reader.mood}
                                         </span>
                                     )}
                                 </div>
-                                <span>{selectedChapter.isRead ? 'Completed' : 'In Progress'}</span>
+                                <span>{selectedChapter.isRead ? t.timeline.completed : t.timeline.inProgress}</span>
                             </motion.div>
 
                             {/* Content Container */}
@@ -363,7 +365,7 @@ export const ChapterReader: React.FC = () => {
                                                 >
                                                     <CheckCircle size={24} className="text-green-400" />
                                                 </motion.div>
-                                                <span className="font-semibold text-lg">Chapter completed!</span>
+                                                <span className="font-semibold text-lg">{t.reader.chapterCompleted}</span>
                                             </motion.div>
 
                                             {/* Celebration particles */}

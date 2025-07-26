@@ -1,9 +1,11 @@
 import React from 'react';
 import { Type, RotateCcw } from 'lucide-react';
 import { useAppStore } from '../store';
+import { useLocalization } from '../hooks/useLocalization';
 
 export const FontSizeControls: React.FC = () => {
     const { fontSize, setFontSize, resetProgress } = useAppStore();
+    const { t } = useLocalization();
 
     const sizes = [
         { key: 'small' as const, label: 'A', size: 'text-sm' },
@@ -34,7 +36,7 @@ export const FontSizeControls: React.FC = () => {
             <button
                 onClick={resetProgress}
                 className="bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white p-2 rounded-lg border border-gray-700 transition-colors"
-                title="Reset Progress"
+                title={t.ui.resetProgress}
             >
                 <RotateCcw size={16} />
             </button>

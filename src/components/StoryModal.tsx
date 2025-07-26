@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen, CheckCircle } from 'lucide-react';
 import { StoryCover } from './StoryCover';
 import { useAppStore } from '../store';
+import { useLocalization } from '../hooks/useLocalization';
 
 export const StoryModal: React.FC = () => {
+    const { t } = useLocalization();
     const { selectedStory, selectStory, selectChapter, stages } = useAppStore();
 
     // Get the current story data from the store to ensure we have the latest state
@@ -91,7 +93,7 @@ export const StoryModal: React.FC = () => {
                             </div>
                         </div>
 
-                        <h3 className="text-lg font-semibold text-white mb-4 text-center">Chapters</h3>
+                        <h3 className="text-lg font-semibold text-white mb-4 text-center">{t.timeline.chapter}s</h3>
                         <div className="space-y-3">
                             {currentStory.chapters.map((chapter, index) => (
                                 <motion.button

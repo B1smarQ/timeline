@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { BookOpen, ArrowRight, Sparkles } from 'lucide-react';
 import { Chapter, Story } from '../types';
 import { useSound } from '../hooks/useSound';
+import { useLocalization } from '../hooks/useLocalization';
 
 interface ChapterSplashScreenProps {
     chapter: Chapter;
@@ -17,6 +18,7 @@ export const ChapterSplashScreen: React.FC<ChapterSplashScreenProps> = ({
     chapterNumber,
     onContinue
 }) => {
+    const { t } = useLocalization();
     const { playSound } = useSound();
 
     const handleContinue = () => {
@@ -191,7 +193,7 @@ export const ChapterSplashScreen: React.FC<ChapterSplashScreenProps> = ({
 
                                 {/* Button Content */}
                                 <div className="relative flex items-center gap-3">
-                                    <span>Begin Reading</span>
+                                    <span>{t.reader.continue}</span>
                                     <motion.div
                                         animate={{ x: [0, 5, 0] }}
                                         transition={{ duration: 1.5, repeat: Infinity }}

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Lock, CheckCircle } from 'lucide-react';
 import { TimelineStage as TimelineStageType } from '../types';
 import { StoryCard } from './StoryCard';
+import { useLocalization } from '../hooks/useLocalization';
 
 interface TimelineStageProps {
     stage: TimelineStageType;
@@ -15,6 +16,7 @@ export const TimelineStage: React.FC<TimelineStageProps> = ({
     isActive,
     isPast
 }) => {
+    const { t } = useLocalization();
     if (!stage.isUnlocked && !isPast) {
         console.log(stage.title + " is not unlocked");
         return (
@@ -247,7 +249,7 @@ export const TimelineStage: React.FC<TimelineStageProps> = ({
                                     transition={{ delay: 0.7, type: "spring" }}
                                 >
                                     <CheckCircle size={20} />
-                                    <span className="text-sm font-medium">Completed</span>
+                                    <span className="text-sm font-medium">{t.timeline.completed}</span>
                                 </motion.div>
                             )}
                         </div>

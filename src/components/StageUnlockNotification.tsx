@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ArrowRight, X } from 'lucide-react';
 import { useAppStore } from '../store';
 import { useSound } from '../hooks/useSound';
+import { useLocalization } from '../hooks/useLocalization';
 
 export const StageUnlockNotification: React.FC = () => {
     const {
@@ -13,6 +14,7 @@ export const StageUnlockNotification: React.FC = () => {
         selectChapter
     } = useAppStore();
     const { playSound } = useSound();
+    const { t } = useLocalization();
 
     useEffect(() => {
         if (stageUnlockNotification) {
@@ -208,7 +210,7 @@ export const StageUnlockNotification: React.FC = () => {
 
                                     {/* Button Content */}
                                     <div className="relative flex items-center gap-2">
-                                        <span>Explore Now</span>
+                                        <span>{t.unlock.explore}</span>
                                         <motion.div
                                             animate={{ x: [0, 3, 0] }}
                                             transition={{ duration: 1.5, repeat: Infinity }}

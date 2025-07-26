@@ -4,6 +4,7 @@ import { ParticleSystem, FloatingOrbs } from './ParticleSystem';
 import { RotateCcw, X, User } from 'lucide-react';
 import { creditsData, creditsConfig, CreditEntry } from '../data/creditsData';
 import { useSound } from '../hooks/useSound';
+import { useLocalization } from '../hooks/useLocalization';
 
 interface EndingModalProps {
     show: boolean;
@@ -97,6 +98,7 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
     const [showControls, setShowControls] = useState(false);
     const [creditsComplete, setCreditsComplete] = useState(false);
     const { playSound } = useSound();
+    const { t } = useLocalization();
 
     useEffect(() => {
         if (!show) {
@@ -297,7 +299,7 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
                                                         >
                                                             <RotateCcw size={20} />
                                                         </motion.div>
-                                                        <span>Start Over</span>
+                                                        <span>{t.ending.restartJourney}</span>
                                                     </div>
 
                                                     {/* Shimmer Effect */}
@@ -326,7 +328,7 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
                                                 >
                                                     <div className="relative flex items-center justify-center gap-3">
                                                         <X size={20} />
-                                                        <span>Continue Exploring</span>
+                                                        <span>{t.ending.close}</span>
                                                     </div>
                                                 </motion.button>
                                             </motion.div>
