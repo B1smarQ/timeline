@@ -22,6 +22,7 @@ export const sampleData: TimelineStage[] = [
                         title: 'The Unbroken Song',
                         description: 'A child\'s laughter echoes through a dying city, masking the drumbeats of approaching war.',
                         mood: 'hopeful',
+                        image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center',
                         content: `# The Unbroken Song
 
 The boy knew only one truth: the world was kind.

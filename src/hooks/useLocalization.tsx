@@ -4,12 +4,14 @@ import { enTranslations } from '../localization/en';
 import { ruTranslations } from '../localization/ru';
 import { deTranslations } from '../localization/de';
 import { viTranslations } from '../localization/vi';
+import { frTranslations } from '../localization/fr';
 
 const translations: Record<SupportedLanguage, UITranslations> = {
     en: enTranslations,
     ru: ruTranslations,
     de: deTranslations,
-    vi: viTranslations
+    vi: viTranslations,
+    fr: frTranslations
 };
 
 interface LocalizationContextType {

@@ -1,4 +1,4 @@
-export type SupportedLanguage = 'en' | 'ru' | 'de' | 'vi';
+export type SupportedLanguage = 'en' | 'ru' | 'de' | 'vi' | 'fr';
 
 export interface LanguageInfo {
     code: SupportedLanguage;
@@ -145,5 +145,11 @@ export const SUPPORTED_LANGUAGES: LanguageInfo[] = [
         name: 'Vietnamese',
         nativeName: 'Tiếng Việt',
         flag: '🇻🇳'
+    },
+    {
+        code: 'fr',
+        name: 'French',
+        nativeName: 'Français',
+        flag: '🇫🇷'
     }
 ];

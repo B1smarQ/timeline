@@ -3,6 +3,7 @@ export interface Chapter {
     title: string;
     description?: string; // Brief description of the chapter (optional)
     content: string; // Markdown content
+    image?: string; // Optional image URL that displays after content
     isRead: boolean;
     mood?: 'mysterious' | 'melancholic' | 'hopeful' | 'dramatic'; // Optional mood for ambient audio
 }
@@ -68,7 +69,7 @@ export interface AppState {
     // Language actions
     setLanguage: (language: import('./types/localization').SupportedLanguage) => void;
     loadDataForLanguage: (language: import('./types/localization').SupportedLanguage) => Promise<void>;
-    
+
     // Helper methods
     mergeProgressWithNewData: (newData: TimelineStage[], oldData: TimelineStage[]) => TimelineStage[];
 }

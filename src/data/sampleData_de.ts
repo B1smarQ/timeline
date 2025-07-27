@@ -22,6 +22,7 @@ export const sampleData_de: TimelineStage[] = [
                         title: 'Das ungebrochene Lied',
                         description: 'Das Lachen eines Kindes hallt durch eine sterbende Stadt und übertönt die Trommelschläge des nahenden Krieges.',
                         mood: 'hopeful',
+                        image: 'https://doodleipsum.com/700x1244/flat?i=3ce040fbbf898c2e71cf6d7713c651ce',
                         content: `# Das ungebrochene Lied
 
 Der Junge kannte nur eine Wahrheit: Die Welt war freundlich.
@@ -438,6 +439,7 @@ Sie umkreisten sich wie zwei Kometen – einer hinterließ Funken, der andere sc
 Der Marktplatz wurde ihre Bühne. Der Junge jonglierte mit gestohlenen Birnen, seine Bewegungen eine helle Gotteslästerung gegen die tristen Stände. Der Mann beobachtete ihn hinter einer Säule, seine Reglosigkeit ein Negativbild des Chaos des Jungen. Als sich ihre Blicke trafen, war es nicht Wiedererkennen, was zwischen ihnen passierte, sondern das stille Verständnis zweier Sprachen, die niemand sonst sprach:
     
 > Du bist nicht, was du vorgibst zu sein.
+
 > Du auch nicht.
     
 Bei Einbruch der Dunkelheit fanden sie sich am selben zerbrochenen Brunnen wieder. Der Junge warf eine Münze hinein – nicht für Wünsche, sondern um das Klirren von Metall auf trockenem Stein zu hören. Der Mann holte sie heraus, polierte sie an seinem Ärmel und gab sie wortlos zurück. Eine Transaktion. Eine Prüfung.
@@ -841,6 +843,7 @@ Und der Sternprinz, der einst Galaxien ins Dasein gesungen hatte,
 fand seine Stimme auf eine einzige, sterbliche Wahrheit reduziert:
 
 > ***"Nimm es,"*** flüsterte er.
+
 > ***"Es war immer deins."***
 
 Über ihnen stürzte der Himmel nicht ein.
@@ -937,6 +940,7 @@ Sie umkreisten sich wie zwei Kometen – einer hinterließ Funken, der andere sc
 Der Marktplatz wurde ihre Bühne. Der Junge jonglierte mit gestohlenen Birnen, seine Bewegungen eine helle Gotteslästerung gegen die tristen Stände. Der Mann beobachtete ihn hinter einer Säule, seine Reglosigkeit ein Negativbild des Chaos des Jungen. Als sich ihre Blicke trafen, war es nicht Wiedererkennen, was zwischen ihnen passierte, sondern das stille Verständnis zweier Sprachen, die niemand sonst sprach:
 
 > Du bist nicht, was du vorgibst zu sein.
+ 
 > Du auch nicht.
 
 Bei Einbruch der Dunkelheit fanden sie sich am selben zerbrochenen Brunnen wieder. Der Junge warf eine Münze hinein – nicht für Wünsche, sondern um das Klirren von Metall auf trockenem Stein zu hören. Der Mann holte sie heraus, polierte sie an seinem Ärmel und gab sie wortlos zurück. Eine Transaktion. Eine Prüfung.

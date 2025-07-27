@@ -337,6 +337,52 @@ export const ChapterReader: React.FC = () => {
                                     )}
                                 </motion.div>
 
+                                {/* Chapter Image - displays after typewriter completes */}
+                                <AnimatePresence>
+                                    {(() => {
+                                        console.log('Image debug:', {
+                                            hasImage: !!selectedChapter.image,
+                                            imageUrl: selectedChapter.image,
+                                            typewriterComplete,
+                                            isTypewriterMode,
+                                            shouldShow: selectedChapter.image && (typewriterComplete || !isTypewriterMode)
+                                        });
+                                        return selectedChapter.image && (typewriterComplete || !isTypewriterMode);
+                                    })() && (
+                                            <motion.div
+                                                className="mt-8 flex justify-center"
+                                                initial={{ opacity: 0, y: 30 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -30 }}
+                                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                            >
+                                                <motion.div
+                                                    className="relative max-w-2xl w-full"
+                                                    whileHover={{ scale: 1.02 }}
+                                                    transition={{ duration: 0.3 }}
+                                                >
+                                                    <img
+                                                        src={selectedChapter.image}
+                                                        alt={`Illustration for ${selectedChapter.title}`}
+                                                        className="w-full h-auto rounded-2xl shadow-2xl border border-purple-500/20"
+                                                        style={{
+                                                            filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.3))'
+                                                        }}
+                                                        onError={(e) => {
+                                                            console.error('Failed to load chapter image:', selectedChapter.image);
+                                                            e.currentTarget.style.display = 'none';
+                                                        }}
+                                                    />
+
+                                                    {/* Image overlay with subtle glow effect */}
+                                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                                                </motion.div>
+                                            </motion.div>
+                                        )}
+                                </AnimatePresence>
+
+
+
                                 {/* Reading completion indicator */}
                                 <AnimatePresence>
                                     {selectedChapter.isRead && (

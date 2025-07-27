@@ -3,10 +3,11 @@ import { SupportedLanguage } from '../types/localization';
 
 // Dynamic imports for each language
 const dataLoaders = {
-    en: () => import('./sampleData_en').then(module => module.sampleData),
+    en: () => import('./sampleData_en').then(module => module.sampleData_en),
     ru: () => import('./sampleData_ru').then(module => module.sampleData_ru),
     de: () => import('./sampleData_de').then(module => module.sampleData_de),
     vi: () => import('./sampleData_vi').then(module => module.sampleData_vi),
+    fr: () => import('./sampleData_fr').then(module => module.sampleData_fr),
 };
 
 // Cache for loaded data to avoid re-importing

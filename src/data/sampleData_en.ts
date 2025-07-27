@@ -1,6 +1,6 @@
 import { TimelineStage } from '../types';
 
-export const sampleData: TimelineStage[] = [
+export const sampleData_en: TimelineStage[] = [
     {
         id: 'stage-1',
         title: 'The Beginning',
@@ -22,6 +22,7 @@ export const sampleData: TimelineStage[] = [
                         title: 'The Unbroken Song',
                         description: 'A child\'s laughter echoes through a dying city, masking the drumbeats of approaching war.',
                         mood: 'hopeful',
+                        image: 'https://doodleipsum.com/700x1244/flat?i=3ce040fbbf898c2e71cf6d7713c651ce',
                         content: `# The Unbroken Song
 
 The boy knew only one truth: the world was kind.
@@ -68,6 +69,7 @@ Until the day the shield cracked.`,
                         title: 'The Unbroken Song',
                         description: 'A child\'s laughter echoes through a dying city, masking the drumbeats of approaching war.',
                         mood: 'hopeful',
+                        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center',
                         content: `# The Unbroken Song
 
 The boy knew only one truth: the world was kind.
@@ -447,6 +449,7 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
     The marketplace became their stage. The boy juggled stolen pears, his movements a bright blasphemy against the drab stalls. The man watched from behind a column, his stillness a negative image of the boy’s chaos. When their eyes met, it was not recognition that passed between them, but the quiet understanding of two languages no one else spoke:
     
     > You are not what you pretend to be.
+
     > Neither are you.
     
     At dusk, they found themselves at the same broken fountain. The boy tossed a coin in—not for wishes, but to hear the plink of metal on dry stone. The man retrieved it, polished it against his sleeve, and handed it back without a word. A transaction. A test.
@@ -854,6 +857,7 @@ And the star prince, who had once sung galaxies into being,
 found his voice reduced to a single, mortal truth:
 
 > ***"Take it,"*** he whispered.
+
 > ***"It has always been yours."***
 
 Above them, the sky did not collapse.
@@ -951,6 +955,7 @@ They circled each other like twin comets — one trailing embers, the other swal
 The marketplace became their stage. The boy juggled stolen pears, his movements a bright blasphemy against the drab stalls. The man watched from behind a column, his stillness a negative image of the boy’s chaos. When their eyes met, it was not recognition that passed between them, but the quiet understanding of two languages no one else spoke:
 
 > You are not what you pretend to be.
+ 
 > Neither are you.
 
 At dusk, they found themselves at the same broken fountain. The boy tossed a coin in—not for wishes, but to hear the plink of metal on dry stone. The man retrieved it, polished it against his sleeve, and handed it back without a word. A transaction. A test.
