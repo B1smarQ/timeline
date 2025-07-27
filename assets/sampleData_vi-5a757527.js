@@ -1,4 +1,4 @@
-const n=[{id:"stage-1",title:"Khởi Nguyên",year:"2005-2022",description:"Nơi mọi thứ bắt đầu...",isUnlocked:!0,requiresAllChaptersRead:!0,stories:[{id:"story-1",title:"Cậu Bé Đuổi Theo Mặt Trời",description:"Tiếng cười của cậu bé chìm nghỉm trong mực chiến tranh, cho đến khi tình yêu dạy cậu đọc được bóng tối.",cover:"https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/16616d12-f9f4-47eb-b668-0f3819001cc5/Picsart_22-05-17_00-52-25-337.jpg?format=1000w",isUnlocked:!0,unlockOrder:1,chapters:[{id:"ch-1-1",title:"Bài Ca Không Tắt",description:"Tiếng cười trẻ thơ vang vọng khắp thành phố hấp hối, lấn át tiếng trống trận đang đến gần.",mood:"hopeful",content:`# Bài Ca Không Tắt
+const n=[{id:"stage-1",title:"Khởi Nguyên",year:"2005-2022",description:"Nơi mọi thứ bắt đầu...",isUnlocked:!0,requiresAllChaptersRead:!0,stories:[{id:"story-1",title:"Cậu Bé Đuổi Theo Mặt Trời",description:"Tiếng cười của cậu bé chìm nghỉm trong mực chiến tranh, cho đến khi tình yêu dạy cậu đọc được bóng tối.",cover:"https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/16616d12-f9f4-47eb-b668-0f3819001cc5/Picsart_22-05-17_00-52-25-337.jpg?format=1000w",isUnlocked:!0,unlockOrder:1,chapters:[{id:"ch-1-1",title:"Bài Ca Không Tắt",description:"Tiếng cười trẻ thơ vang vọng khắp thành phố hấp hối, lấn át tiếng trống trận đang đến gần.",mood:"hopeful",image:"https://doodleipsum.com/700x1244/flat?i=3ce040fbbf898c2e71cf6d7713c651ce",content:`# Bài Ca Không Tắt
 
 Cậu bé chỉ biết một sự thật: thế giới này tử tế.
 
@@ -217,6 +217,7 @@ Kẻ thù của anh. Con cá voi trắng của anh. Nó chờ đợi trong góc 
     Khu chợ trở thành sân khấu của họ. Cậu bé tung hứng những quả lê ăn trộm, chuyển động của cậu là một sự báng bổ rực rỡ giữa những gian hàng tẻ nhạt. Người đàn ông quan sát từ sau một cột trụ, sự tĩnh lặng của ông là hình ảnh âm bản của sự hỗn loạn của cậu bé. Khi ánh mắt họ gặp nhau, không phải sự nhận thức đã truyền đi, mà là sự thấu hiểu lặng lẽ của hai ngôn ngữ không ai khác nói:
     
     > Anh không phải con người anh giả vờ.
+
     > Em cũng vậy.
     
     Hoàng hôn buông xuống, họ thấy mình cùng đứng bên đài phun nước đổ nát. Cậu bé ném một đồng xu vào—không phải để ước, mà để nghe tiếng kim loại va vào đá khô. Người đàn ông nhặt nó lên, đánh bóng trên tay áo, và trao lại không một lời. Một giao dịch. Một thử thách.
@@ -483,6 +484,7 @@ Và hoàng tử sao, từng hát thiên hà thành hình,
 thấy giọng nói của mình giảm xuống một sự thật phàm trần:
 
 > ***"Cầm lấy,"*** anh thì thầm.
+
 > ***"Nó luôn là của anh."***
 
 Phía trên họ, bầu trời không sụp đổ.
@@ -543,6 +545,7 @@ Họ quay quanh nhau như hai sao chổi song sinh — một vệt lửa, một 
 Khu chợ trở thành sân khấu của họ. Cậu bé tung hứng những quả lê ăn trộm, chuyển động của cậu là một sự báng bổ rực rỡ giữa những gian hàng tẻ nhạt. Người đàn ông quan sát từ sau một cột trụ, sự tĩnh lặng của ông là hình ảnh âm bản của sự hỗn loạn của cậu bé. Khi ánh mắt họ gặp nhau, không phải sự nhận thức đã truyền đi, mà là sự thấu hiểu lặng lẽ của hai ngôn ngữ không ai khác nói:
 
 > Anh không phải con người anh giả vờ.
+ 
 > Em cũng vậy.
 
 Hoàng hôn buông xuống, họ thấy mình cùng đứng bên đài phun nước đổ nát. Cậu bé ném một đồng xu vào—không phải để ước, mà để nghe tiếng kim loại va vào đá khô. Người đàn ông nhặt nó lên, đánh bóng trên tay áo, và trao lại không một lời. Một giao dịch. Một thử thách.

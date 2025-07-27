@@ -1,4 +1,4 @@
-const e=[{id:"stage-1",title:"The Beginning",year:"2005-2022",description:"Where it all started...",isUnlocked:!0,requiresAllChaptersRead:!0,stories:[{id:"story-1",title:"The Boy Who Chased the Sun",description:"A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.",cover:"https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/16616d12-f9f4-47eb-b668-0f3819001cc5/Picsart_22-05-17_00-52-25-337.jpg?format=1000w",isUnlocked:!0,unlockOrder:1,chapters:[{id:"ch-1-1",title:"The Unbroken Song",description:"A child's laughter echoes through a dying city, masking the drumbeats of approaching war.",mood:"hopeful",content:`# The Unbroken Song
+const e=[{id:"stage-1",title:"The Beginning",year:"2005-2022",description:"Where it all started...",isUnlocked:!0,requiresAllChaptersRead:!0,stories:[{id:"story-1",title:"The Boy Who Chased the Sun",description:"A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.",cover:"https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/16616d12-f9f4-47eb-b668-0f3819001cc5/Picsart_22-05-17_00-52-25-337.jpg?format=1000w",isUnlocked:!0,unlockOrder:1,chapters:[{id:"ch-1-1",title:"The Unbroken Song",description:"A child's laughter echoes through a dying city, masking the drumbeats of approaching war.",mood:"hopeful",image:"https://doodleipsum.com/700x1244/flat?i=3ce040fbbf898c2e71cf6d7713c651ce",content:`# The Unbroken Song
 
 The boy knew only one truth: the world was kind.
 
@@ -15,7 +15,7 @@ The weaver said nothing. She knew: joy this pure was either a miracle or a wound
 
 But the boy danced on, his laughter a shield against the dark.
 
-Until the day the shield cracked.`,isRead:!1}]}]},{id:"stage-2",title:"The Turning Point",year:"24-02-2022",description:"When everything changed...",isUnlocked:!1,requiresAllChaptersRead:!0,stories:[{id:"story-2",title:"The Boy Who Chased the Sun",description:"A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.",cover:"https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/3ff28187-7600-46dc-ace8-e1dc5651586c/5-of-cups.jpg?format=1000w",isUnlocked:!0,unlockOrder:1,chapters:[{id:"ch-2-1",title:"The Unbroken Song",description:"A child's laughter echoes through a dying city, masking the drumbeats of approaching war.",mood:"hopeful",content:`# The Unbroken Song
+Until the day the shield cracked.`,isRead:!1}]}]},{id:"stage-2",title:"The Turning Point",year:"24-02-2022",description:"When everything changed...",isUnlocked:!1,requiresAllChaptersRead:!0,stories:[{id:"story-2",title:"The Boy Who Chased the Sun",description:"A boy’s laughter drowns in war’s ink, until love teaches him to read the dark.",cover:"https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/3ff28187-7600-46dc-ace8-e1dc5651586c/5-of-cups.jpg?format=1000w",isUnlocked:!0,unlockOrder:1,chapters:[{id:"ch-2-1",title:"The Unbroken Song",description:"A child's laughter echoes through a dying city, masking the drumbeats of approaching war.",mood:"hopeful",image:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center",content:`# The Unbroken Song
 
 The boy knew only one truth: the world was kind.
 
@@ -219,6 +219,7 @@ His nemesis. His white whale. It waited in the corners of rooms, in the space be
     The marketplace became their stage. The boy juggled stolen pears, his movements a bright blasphemy against the drab stalls. The man watched from behind a column, his stillness a negative image of the boy’s chaos. When their eyes met, it was not recognition that passed between them, but the quiet understanding of two languages no one else spoke:
     
     > You are not what you pretend to be.
+
     > Neither are you.
     
     At dusk, they found themselves at the same broken fountain. The boy tossed a coin in—not for wishes, but to hear the plink of metal on dry stone. The man retrieved it, polished it against his sleeve, and handed it back without a word. A transaction. A test.
@@ -489,6 +490,7 @@ And the star prince, who had once sung galaxies into being,
 found his voice reduced to a single, mortal truth:
 
 > ***"Take it,"*** he whispered.
+
 > ***"It has always been yours."***
 
 Above them, the sky did not collapse.
@@ -550,6 +552,7 @@ They circled each other like twin comets — one trailing embers, the other swal
 The marketplace became their stage. The boy juggled stolen pears, his movements a bright blasphemy against the drab stalls. The man watched from behind a column, his stillness a negative image of the boy’s chaos. When their eyes met, it was not recognition that passed between them, but the quiet understanding of two languages no one else spoke:
 
 > You are not what you pretend to be.
+ 
 > Neither are you.
 
 At dusk, they found themselves at the same broken fountain. The boy tossed a coin in—not for wishes, but to hear the plink of metal on dry stone. The man retrieved it, polished it against his sleeve, and handed it back without a word. A transaction. A test.
@@ -635,4 +638,4 @@ They walked.
 
 And in walking, they defied the universe's oldest lie:
 that everything must eventually
-*stop.*`,isRead:!1}]}]}];export{e as sampleData};
+*stop.*`,isRead:!1}]}]}];export{e as sampleData_en};
