@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Timeline } from './components/Timeline';
 import { StoryModal } from './components/StoryModal';
@@ -32,6 +32,12 @@ const AppContent: React.FC = () => {
     } = useAppStore();
 
     const { t } = useLocalization();
+    const [isShowingCredits, setIsShowingCredits] = useState(false);
+
+    // Debug credits state changes
+    React.useEffect(() => {
+        console.log(`🎬 Credits state changed: ${isShowingCredits}`);
+    }, [isShowingCredits]);
 
     // Sync language between store and localization
     useLanguageSync();
@@ -71,10 +77,12 @@ const AppContent: React.FC = () => {
     const handleRestartJourney = () => {
         resetProgress();
         setShowEnding(false);
+        setIsShowingCredits(false);
     };
 
     const handleCloseEnding = () => {
         setShowEnding(false);
+        setIsShowingCredits(false);
     };
 
     // Determine current scene for audio
@@ -105,24 +113,26 @@ const AppContent: React.FC = () => {
 
             {/* Audio Manager */}
             <AudioManager
-                currentScene={getCurrentScene() as 'welcome' | 'timeline' | 'reading' | 'ending'}
+                currentScene={getCurrentScene() as 'welcome' | 'timeline' | 'reading' | 'ending' | 'credits'}
                 isReading={!!selectedChapter}
                 storyMood={getCurrentMood()}
+                isShowingCredits={isShowingCredits}
             />
 
-            <WelcomeModal 
-                show={showWelcome} 
-                onClose={handleCloseWelcome} 
-                onShowLanguageSelection={handleShowLanguageSelection} 
+            <WelcomeModal
+                show={showWelcome}
+                onClose={handleCloseWelcome}
+                onShowLanguageSelection={handleShowLanguageSelection}
             />
-            <LanguageSelectionPanel 
-                show={showLanguageSelection} 
-                onContinue={handleCloseLanguageSelection} 
+            <LanguageSelectionPanel
+                show={showLanguageSelection}
+                onContinue={handleCloseLanguageSelection}
             />
             <EndingModal
                 show={showEnding}
                 onRestart={handleRestartJourney}
                 onClose={handleCloseEnding}
+                onCreditsStateChange={setIsShowingCredits}
             />
             <StageUnlockNotification />
             {!showWelcome && (

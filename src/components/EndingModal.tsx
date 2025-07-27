@@ -10,6 +10,7 @@ interface EndingModalProps {
     show: boolean;
     onRestart: () => void;
     onClose: () => void;
+    onCreditsStateChange?: (isShowingCredits: boolean) => void;
 }
 
 interface CreditPanelProps {
@@ -93,7 +94,7 @@ const CreditPanel: React.FC<CreditPanelProps> = ({ credit, isVisible }) => {
     );
 };
 
-export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClose }) => {
+export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClose, onCreditsStateChange }) => {
     const [currentCreditIndex, setCurrentCreditIndex] = useState(0);
     const [showControls, setShowControls] = useState(false);
     const [creditsComplete, setCreditsComplete] = useState(false);
@@ -105,8 +106,12 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
             setCurrentCreditIndex(0);
             setShowControls(false);
             setCreditsComplete(false);
+            onCreditsStateChange?.(false);
             return;
         }
+
+        // Notify that credits are starting
+        onCreditsStateChange?.(true);
 
         // Start credits sequence
         const intervals: ReturnType<typeof setTimeout>[] = [];

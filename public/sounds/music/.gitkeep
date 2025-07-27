@@ -1,0 +1,9 @@
+# Music Directory
+
+This directory contains special music tracks for specific scenes:
+
+- ending.mp3 - Main ending/credits music theme
+- credits.mp3 - Alternative ending music (fallback)
+- finale.mp3 - Alternative ending music (fallback)
+
+These files should be longer musical pieces (3-10 minutes) that loop seamlessly and provide a different emotional experience from the ambient mood tracks.

@@ -11,6 +11,18 @@ The audio system uses **mood-based ambient tracks** that play continuously acros
 ### Ambient Sounds (4 files)
 Place these in `public/sounds/ambient/`:
 
+### Ending Music (1 file)
+Place this in `public/sounds/music/`:
+
+**Primary naming (recommended):**
+- `ending.mp3` - Special music theme for ending/credits scene
+
+**Alternative naming (the system will try these automatically):**
+- `credits.mp3` - Alternative ending music
+- `finale.mp3` - Alternative ending music
+- `ambient/ending.mp3` - Fallback location
+- `ambient/credits.mp3` - Fallback location
+
 **Primary naming (recommended):**
 - `mysterious.mp3` - For mysterious mood across all scenes
 - `melancholic.mp3` - For melancholic mood across all scenes  
@@ -86,7 +98,8 @@ The system uses Vite's `import.meta.env.BASE_URL` to automatically construct the
 3. **Audio loads** the corresponding mood file (`mysterious.mp3`, `hopeful.mp3`, etc.)
 4. **Scene transitions** don't interrupt audio within the same mood
 5. **Mood changes** (when reading different chapters) trigger smooth audio switching
-6. **Audio loops** seamlessly within each mood
+6. **Ending scene** switches to special ending music instead of mood-based ambient
+7. **Audio loops** seamlessly within each mood and for ending music
 
 ## Chapter Mood Examples
 

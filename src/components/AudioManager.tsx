@@ -5,9 +5,10 @@ import { Howl } from 'howler';
 import { useLocalization } from '../hooks/useLocalization';
 
 interface AudioManagerProps {
-    currentScene: 'welcome' | 'timeline' | 'reading' | 'ending';
+    currentScene: 'welcome' | 'timeline' | 'reading' | 'ending' | 'credits';
     isReading: boolean;
     storyMood?: 'mysterious' | 'melancholic' | 'hopeful' | 'dramatic';
+    isShowingCredits?: boolean; // Additional flag to detect when credits are active
 }
 
 class AmbientSoundManager {
@@ -334,6 +335,102 @@ class AmbientSoundManager {
         }
     }
 
+    // Play ending/credits music
+    playEndingMusic() {
+        console.log(`🎵 playEndingMusic called:`, {
+            isEnabled: this.isEnabled,
+            currentMood: this.currentMood,
+            hasCurrentSound: !!this.currentSound,
+            isCurrentSoundPlaying: this.currentSound?.playing()
+        });
+
+        // Don't start any sound if disabled
+        if (!this.isEnabled) {
+            console.log(`🔇 Audio disabled, not starting ending music`);
+            return;
+        }
+
+        // Check if we're already playing ending music
+        if (this.currentSound && this.currentMood === 'ending') {
+            if (this.currentSound.playing()) {
+                console.log(`✅ Already playing ending music, not restarting`);
+                return;
+            } else {
+                console.log(`🔄 Ending music was set but not playing, restarting...`);
+            }
+        }
+
+        // Always stop current sound before starting ending music
+        console.log(`🔄 Stopping current sound to switch to ending music`);
+        this.stopCurrentSound();
+
+        // Also try to stop any other sounds that might be playing
+        try {
+            const howlerGlobal = (window as any).Howler;
+            if (howlerGlobal && howlerGlobal._howls) {
+                console.log(`🔍 Found ${howlerGlobal._howls.length} total Howl instances`);
+                howlerGlobal._howls.forEach((sound: any, index: number) => {
+                    if (sound.playing()) {
+                        console.log(`🔇 Stopping playing sound ${index}: ${sound._src}`);
+                        sound.stop();
+                        sound.unload();
+                    }
+                });
+            }
+        } catch (error) {
+            console.warn('Could not check/stop global sounds:', error);
+        }
+
+        // Small delay to ensure cleanup is complete
+        this.pendingTimeout = setTimeout(() => {
+            if (this.isEnabled) {
+                this.startEndingMusic();
+            }
+            this.pendingTimeout = null;
+        }, 300); // Increased delay to ensure cleanup
+    }
+
+    private startEndingMusic() {
+        // Double-check that audio is still enabled before starting
+        if (!this.isEnabled) {
+            console.log(`🔇 Audio was disabled before starting ending music, aborting`);
+            return;
+        }
+
+        // Use ending music track with correct base path for GitHub Pages
+        const basePath = import.meta.env.BASE_URL || '/';
+        const soundUrl = `${basePath}sounds/music/ending.mp3`;
+        console.log(`🎵 Starting ending music: ${soundUrl}`);
+
+        this.currentMood = 'ending';
+        this.currentSound = new Howl({
+            src: [soundUrl],
+            loop: true,
+            volume: this.masterVolume * this.ambientVolume,
+            autoplay: true,
+            onload: () => {
+                console.log(`✅ Successfully loaded ending music: ${soundUrl}`);
+            },
+            onloaderror: (_id, error) => {
+                console.error(`Failed to load ending music: ${soundUrl}`, error);
+                // Try alternative names for ending music
+                const basePath = import.meta.env.BASE_URL || '/';
+                const alternatives = [
+                    `${basePath}sounds/music/credits.mp3`,
+                    `${basePath}sounds/ambient/ending.mp3`,
+                    `${basePath}sounds/music/finale.mp3`,
+                    `${basePath}sounds/ambient/credits.mp3`
+                ];
+
+                console.log(`🔍 Trying alternative ending music files:`, alternatives);
+                this.tryAlternativeFiles(alternatives, 0, 'ending');
+            },
+            onplayerror: (_id, error) => {
+                console.error(`Error playing ending music: ${soundUrl}`, error);
+            }
+        });
+    }
+
     // Simple UI sound effects using Howler
     playUISound(type: 'click' | 'hover' | 'success') {
         console.log(`Would play UI sound: ${type}`);
@@ -352,7 +449,8 @@ class AmbientSoundManager {
 export const AudioManager: React.FC<AudioManagerProps> = ({
     currentScene,
     isReading,
-    storyMood = 'mysterious'
+    storyMood = 'mysterious',
+    isShowingCredits = false
 }) => {
     const { t } = useLocalization();
     const [isEnabled, setIsEnabled] = useState(true);
@@ -378,25 +476,42 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
     }, []);
 
     useEffect(() => {
+        console.log(`🎛️ AudioManager useEffect triggered:`, {
+            isEnabled,
+            currentScene,
+            storyMood,
+            isShowingCredits,
+            hasManager: !!soundManagerRef.current
+        });
+
         if (soundManagerRef.current) {
             soundManagerRef.current.setEnabled(isEnabled);
 
             if (isEnabled) {
-                console.log(`🎛️ Audio Manager: Switching to ${storyMood} mood for scene ${currentScene}`);
-                soundManagerRef.current.playMoodAmbient(storyMood);
+                if (currentScene === 'ending' || currentScene === 'credits' || isShowingCredits) {
+                    console.log(`🎛️ Audio Manager: Switching to ending music for scene ${currentScene} (credits: ${isShowingCredits})`);
+                    soundManagerRef.current.playEndingMusic();
+                } else {
+                    console.log(`🎛️ Audio Manager: Switching to ${storyMood} mood for scene ${currentScene}`);
+                    soundManagerRef.current.playMoodAmbient(storyMood);
+                }
             } else {
                 console.log(`🔇 Audio Manager: Stopping all sounds (enabled: ${isEnabled})`);
                 soundManagerRef.current.stopCurrentSound();
             }
         }
-    }, [isEnabled, storyMood]); // Only depend on isEnabled and storyMood, not currentScene
+    }, [isEnabled, storyMood, currentScene, isShowingCredits]); // Now depend on isShowingCredits too
 
-    // Log scene changes without interrupting audio
+    // Log scene changes and handle audio accordingly
     useEffect(() => {
         if (isEnabled) {
-            console.log(`Scene changed to: ${currentScene} - ${storyMood} mood audio continues`);
+            if (currentScene === 'ending' || currentScene === 'credits' || isShowingCredits) {
+                console.log(`Scene changed to: ${currentScene} (credits: ${isShowingCredits}) - ending music will play`);
+            } else {
+                console.log(`Scene changed to: ${currentScene} - ${storyMood} mood audio continues`);
+            }
         }
-    }, [currentScene, isEnabled]);
+    }, [currentScene, isEnabled, storyMood, isShowingCredits]);
 
     const handleVolumeChange = (type: 'master' | 'ambient', value: number) => {
         if (type === 'master') {
