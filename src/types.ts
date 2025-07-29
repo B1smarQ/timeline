@@ -18,6 +18,15 @@ export interface Story {
     unlockOrder?: number; // For progressive unlocking
 }
 
+export interface Epilogue {
+    id: string;
+    title: string;
+    description?: string;
+    content: string;
+    image?: string;
+    mood?: 'mysterious' | 'melancholic' | 'hopeful' | 'dramatic';
+}
+
 export interface TimelineStage {
     id: string;
     title: string;
@@ -26,6 +35,7 @@ export interface TimelineStage {
     stories: Story[];
     isUnlocked: boolean;
     requiresAllChaptersRead: boolean; // Must read all chapters to progress
+    epilogue?: Epilogue; // Optional epilogue for the final stage
 }
 
 export interface AppState {
@@ -50,6 +60,14 @@ export interface AppState {
     // Ending modal state
     showEnding: boolean;
     setShowEnding: (show: boolean) => void;
+
+    // Epilogue modal state
+    showEpilogue: boolean;
+    setShowEpilogue: (show: boolean) => void;
+
+    // Track if we're in credits phase or final ending phase
+    isInCreditsPhase: boolean;
+    setIsInCreditsPhase: (inCredits: boolean) => void;
 
     // Stage unlock notification
     stageUnlockNotification: { stageTitle: string; stageIndex: number; stageId: string } | null;

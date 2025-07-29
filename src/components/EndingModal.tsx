@@ -11,6 +11,8 @@ interface EndingModalProps {
     onRestart: () => void;
     onClose: () => void;
     onCreditsStateChange?: (isShowingCredits: boolean) => void;
+    onCreditsComplete?: () => void;
+    showCredits?: boolean;
 }
 
 interface CreditPanelProps {
@@ -94,7 +96,7 @@ const CreditPanel: React.FC<CreditPanelProps> = ({ credit, isVisible }) => {
     );
 };
 
-export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClose, onCreditsStateChange }) => {
+export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClose, onCreditsStateChange, onCreditsComplete, showCredits = true }) => {
     const [currentCreditIndex, setCurrentCreditIndex] = useState(0);
     const [showControls, setShowControls] = useState(false);
     const [creditsComplete, setCreditsComplete] = useState(false);
@@ -110,36 +112,44 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
             return;
         }
 
-        // Notify that credits are starting
-        onCreditsStateChange?.(true);
+        if (showCredits) {
+            // Notify that credits are starting
+            onCreditsStateChange?.(true);
 
-        // Start credits sequence
-        const intervals: ReturnType<typeof setTimeout>[] = [];
+            // Start credits sequence
+            const intervals: ReturnType<typeof setTimeout>[] = [];
 
-        creditsData.forEach((credit, index) => {
-            const showTime = (credit.delay || index * creditsConfig.panelDuration) * 1000;
+            creditsData.forEach((credit, index) => {
+                const showTime = (credit.delay || index * creditsConfig.panelDuration) * 1000;
 
-            const showInterval = setTimeout(() => {
-                setCurrentCreditIndex(index);
-                //playSound('chime');
-            }, showTime);
+                const showInterval = setTimeout(() => {
+                    setCurrentCreditIndex(index);
+                    //playSound('chime');
+                }, showTime);
 
-            intervals.push(showInterval);
-        });
+                intervals.push(showInterval);
+            });
 
-        // Show controls after all credits
-        const controlsTimeout = setTimeout(() => {
+            // Show controls after all credits
+            const controlsTimeout = setTimeout(() => {
+                setCreditsComplete(true);
+                setShowControls(true);
+                //playSound('success');
+                onCreditsComplete?.();
+            }, (creditsConfig.totalDuration + creditsConfig.restartDelay) * 1000);
+
+            intervals.push(controlsTimeout);
+
+            return () => {
+                intervals.forEach(clearTimeout);
+            };
+        } else {
+            // If not showing credits, show controls immediately
             setCreditsComplete(true);
             setShowControls(true);
-            //playSound('success');
-        }, (creditsConfig.totalDuration + creditsConfig.restartDelay) * 1000);
-
-        intervals.push(controlsTimeout);
-
-        return () => {
-            intervals.forEach(clearTimeout);
-        };
-    }, [show, playSound]);
+            onCreditsStateChange?.(false);
+        }
+    }, [show, showCredits, playSound, onCreditsStateChange, onCreditsComplete]);
     return (
         <AnimatePresence>
             {show && (
@@ -166,28 +176,32 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
 
                     {/* Credits Container */}
                     <div className="relative z-10 min-h-screen">
-                        {/* Credits Title */}
-                        <motion.div
-                            className="absolute top-16 left-0 right-0 z-20 flex justify-center"
-                            initial={{ opacity: 0, y: -50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.5 }}
-                        >
-                            <h1 className="text-4xl md:text-6xl font-bold glow-text tracking-wider">
-                                Credits
-                            </h1>
-                        </motion.div>
+                        {showCredits && (
+                            <>
+                                {/* Credits Title */}
+                                <motion.div
+                                    className="absolute top-16 left-0 right-0 z-20 flex justify-center"
+                                    initial={{ opacity: 0, y: -50 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 1, delay: 0.5 }}
+                                >
+                                    <h1 className="text-4xl md:text-6xl font-bold glow-text tracking-wider">
+                                        Credits
+                                    </h1>
+                                </motion.div>
 
-                        {/* Credits Panels */}
-                        <div className="relative w-full h-screen flex items-center justify-center">
-                            {creditsData.map((credit, index) => (
-                                <CreditPanel
-                                    key={index}
-                                    credit={credit}
-                                    isVisible={currentCreditIndex === index && !creditsComplete}
-                                />
-                            ))}
-                        </div>
+                                {/* Credits Panels */}
+                                <div className="relative w-full h-screen flex items-center justify-center">
+                                    {creditsData.map((credit, index) => (
+                                        <CreditPanel
+                                            key={index}
+                                            credit={credit}
+                                            isVisible={currentCreditIndex === index && !creditsComplete}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        )}
 
                         {/* Final Screen with Controls */}
                         <AnimatePresence>

@@ -1046,6 +1046,40 @@ rằng mọi thứ cuối cùng phải
                     }
                 ]
             },
-        ]
+        ],
+        epilogue: {
+            id: 'epilogue-1',
+            title: 'Kết: Khiếm Khuyết Trong Lửa',
+            description: 'Bạn đã nhận ra rồi, phải không? Lỗ hổng lớn trong những câu chuyện bạn chứng kiến. Làm sao cậu bé đánh mất tiếng cười giữa trống trận chiến lại trở thành người mang lửa? Ai là kẻ mang niềm vui và kẻ nuốt mặt trời?',
+            mood: 'hopeful',
+            image: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w',
+            content: `# Kết: Khiếm Khuyết Trong Lửa
+
+Những câu chuyện đã nói dối.
+
+Không phải bằng lời, mà bằng sự cô độc.
+
+Cậu bé trở thành người mang lửa không tìm lại ngọn lửa của mình chỉ nhờ sự tận tâm của hoàng tử sao, mảnh kính vỡ của người nghệ sĩ câm hay sự đồng cảm lặng lẽ của kẻ ăn bóng.
+
+Còn có những người khác—
+
+Những bàn tay giữ vững khi mồi lửa chẳng chịu bén.
+
+Những giọng nói gọi tên cậu khi đêm trở nên quá ồn ào.
+
+Những khoảng lặng ôm lấy cậu, chẳng sợ bóng tối.
+
+Kẻ nuốt mặt trời không chỉ là người cháy quá rực rỡ—anh là bằng chứng rằng ngay cả cháy rừng cũng để lại đất màu mỡ.
+
+Kẻ mang niềm vui không chỉ là nụ cười thoáng qua—anh là lời nhắc rằng một số ánh sáng vẫn tồn tại, dù chẳng ai vỗ tay.
+
+Còn người mang lửa?
+
+Cậu từ từ hiểu ra rằng ngọn lửa của mình không được thắp lại—mà được ***nuôi dưỡng***.
+
+Những câu chuyện kể về sáu người.
+
+Nhưng sự thật thì ***vô tận***.`
+        }
     }
 ];

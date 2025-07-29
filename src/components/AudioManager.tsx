@@ -5,7 +5,7 @@ import { Howl } from 'howler';
 import { useLocalization } from '../hooks/useLocalization';
 
 interface AudioManagerProps {
-    currentScene: 'welcome' | 'timeline' | 'reading' | 'ending' | 'credits';
+    currentScene: 'welcome' | 'timeline' | 'reading' | 'ending' | 'credits' | 'epilogue';
     isReading: boolean;
     storyMood?: 'mysterious' | 'melancholic' | 'hopeful' | 'dramatic';
     isShowingCredits?: boolean; // Additional flag to detect when credits are active
@@ -491,6 +491,9 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
                 if (currentScene === 'ending' || currentScene === 'credits' || isShowingCredits) {
                     console.log(`🎛️ Audio Manager: Switching to ending music for scene ${currentScene} (credits: ${isShowingCredits})`);
                     soundManagerRef.current.playEndingMusic();
+                } else if (currentScene === 'epilogue') {
+                    console.log(`🎛️ Audio Manager: Switching to ${storyMood} mood for epilogue scene`);
+                    soundManagerRef.current.playMoodAmbient(storyMood);
                 } else {
                     console.log(`🎛️ Audio Manager: Switching to ${storyMood} mood for scene ${currentScene}`);
                     soundManagerRef.current.playMoodAmbient(storyMood);
@@ -507,6 +510,8 @@ export const AudioManager: React.FC<AudioManagerProps> = ({
         if (isEnabled) {
             if (currentScene === 'ending' || currentScene === 'credits' || isShowingCredits) {
                 console.log(`Scene changed to: ${currentScene} (credits: ${isShowingCredits}) - ending music will play`);
+            } else if (currentScene === 'epilogue') {
+                console.log(`Scene changed to: ${currentScene} - ${storyMood} mood for epilogue`);
             } else {
                 console.log(`Scene changed to: ${currentScene} - ${storyMood} mood audio continues`);
             }

@@ -9,6 +9,7 @@ import { ParticleSystem, FloatingOrbs } from './components/ParticleSystem';
 import { useAppStore } from './store';
 import { WelcomeModal } from './components/WelcomeModal';
 import { EndingModal } from './components/EndingModal';
+import { EpilogueModal } from './components/EpilogueModal';
 import { AudioManager } from './components/AudioManager';
 import { StageUnlockNotification } from './components/StageUnlockNotification';
 import { LocalizationProvider, useLocalization } from './hooks/useLocalization';
@@ -26,6 +27,11 @@ const AppContent: React.FC = () => {
         setShowLanguageSelection,
         showEnding,
         setShowEnding,
+        showEpilogue,
+        setShowEpilogue,
+        isInCreditsPhase,
+        setIsInCreditsPhase,
+        stages,
         resetProgress,
         currentLanguage,
         isLoadingData
@@ -77,18 +83,41 @@ const AppContent: React.FC = () => {
     const handleRestartJourney = () => {
         resetProgress();
         setShowEnding(false);
+        setShowEpilogue(false);
         setIsShowingCredits(false);
+        setIsInCreditsPhase(true);
     };
 
     const handleCloseEnding = () => {
         setShowEnding(false);
         setIsShowingCredits(false);
+        setIsInCreditsPhase(true);
+    };
+
+
+
+    const handleCreditsComplete = () => {
+        // Check if there's an epilogue to show
+        if (stages.length > 0 && stages[stages.length - 1]?.epilogue) {
+            setShowEnding(false);
+            setShowEpilogue(true);
+        } else {
+            // No epilogue, go straight to final ending
+            setIsInCreditsPhase(false);
+        }
+    };
+
+    const handleEpilogueComplete = () => {
+        setShowEpilogue(false);
+        setShowEnding(true);
+        setIsInCreditsPhase(false);
     };
 
     // Determine current scene for audio
     const getCurrentScene = () => {
         if (showWelcome) return 'welcome';
         if (showLanguageSelection) return 'welcome'; // Use welcome audio for language selection
+        if (showEpilogue) return 'epilogue';
         if (showEnding) return 'ending';
         if (selectedChapter) return 'reading';
         return 'timeline';
@@ -96,6 +125,14 @@ const AppContent: React.FC = () => {
 
     // Determine current mood for audio
     const getCurrentMood = (): 'mysterious' | 'melancholic' | 'hopeful' | 'dramatic' => {
+        // If showing epilogue, use the epilogue's mood
+        if (showEpilogue && stages.length > 0) {
+            const finalStage = stages[stages.length - 1];
+            if (finalStage?.epilogue?.mood) {
+                return finalStage.epilogue.mood;
+            }
+        }
+
         // If reading a chapter, use the chapter's mood or default to mysterious
         if (selectedChapter) {
             return selectedChapter.mood || 'mysterious';
@@ -113,7 +150,7 @@ const AppContent: React.FC = () => {
 
             {/* Audio Manager */}
             <AudioManager
-                currentScene={getCurrentScene() as 'welcome' | 'timeline' | 'reading' | 'ending' | 'credits'}
+                currentScene={getCurrentScene() as 'welcome' | 'timeline' | 'reading' | 'ending' | 'credits' | 'epilogue'}
                 isReading={!!selectedChapter}
                 storyMood={getCurrentMood()}
                 isShowingCredits={isShowingCredits}
@@ -133,7 +170,16 @@ const AppContent: React.FC = () => {
                 onRestart={handleRestartJourney}
                 onClose={handleCloseEnding}
                 onCreditsStateChange={setIsShowingCredits}
+                onCreditsComplete={handleCreditsComplete}
+                showCredits={isInCreditsPhase}
             />
+            {showEpilogue && stages.length > 0 && stages[stages.length - 1]?.epilogue && (
+                <EpilogueModal
+                    show={showEpilogue}
+                    epilogue={stages[stages.length - 1].epilogue!}
+                    onComplete={handleEpilogueComplete}
+                />
+            )}
             <StageUnlockNotification />
             {!showWelcome && (
                 <motion.div

@@ -35,6 +35,10 @@ export const useAppStore = create<AppState>()(
             setShowLanguageSelection: (show: boolean) => set({ showLanguageSelection: show }),
             showEnding: false,
             setShowEnding: (show: boolean) => set({ showEnding: show }),
+            showEpilogue: false,
+            setShowEpilogue: (show: boolean) => set({ showEpilogue: show }),
+            isInCreditsPhase: true,
+            setIsInCreditsPhase: (inCredits: boolean) => set({ isInCreditsPhase: inCredits }),
             stageUnlockNotification: null,
             setStageUnlockNotification: (notification) => set({ stageUnlockNotification: notification }),
 
@@ -190,6 +194,8 @@ export const useAppStore = create<AppState>()(
                     showWelcome: true,
                     showLanguageSelection: false,
                     showEnding: false,
+                    showEpilogue: false,
+                    isInCreditsPhase: true,
                     stageUnlockNotification: null,
                 });
             },
@@ -204,7 +210,8 @@ export const useAppStore = create<AppState>()(
                 );
 
                 if (allStagesUnlocked && allChaptersRead) {
-                    set({ showEnding: true });
+                    // Always show credits first (EndingModal)
+                    set({ showEnding: true, isInCreditsPhase: true });
                 }
             },
 

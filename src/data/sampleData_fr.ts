@@ -1043,6 +1043,40 @@ que tout doit finalement
                     }
                 ]
             },
-        ]
+        ],
+        epilogue: {
+            id: 'epilogue-1',
+            title: 'Épilogue : La Faille dans le Feu',
+            description: 'Tu l’as remarqué, n’est-ce pas ? Le défaut majeur dans les histoires que tu as vécues. Comment le garçon qui avait perdu son rire dans les tambours de la guerre est-il devenu le porteur de feu ? Qui sont le porteur de joie et l’avaleur de soleil ?',
+            mood: 'hopeful',
+            image: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w',
+            content: `# Épilogue : La Faille dans le Feu
+
+Les histoires mentaient.
+
+Pas dans leurs mots, mais dans leur solitude.
+
+Le garçon qui devint le porteur de feu ne retrouva pas sa flamme uniquement grâce à la dévotion du prince étoilé, au verre brisé du mime ou à la solidarité silencieuse du mangeur d’ombres.
+
+Il y en eut d’autres—
+
+Des mains qui stabilisaient les siennes quand le bois refusait de prendre.
+
+Des voix qui prononçaient son nom quand la nuit devenait trop bruyante.
+
+Des silences qui le retenaient, sans craindre l’obscurité.
+
+L’avaleur de soleil n’était pas qu’un homme qui brûlait trop fort — il était la preuve que même les feux de forêt laissent derrière eux une terre fertile.
+
+Le porteur de joie n’était pas qu’un sourire fugace — il était la preuve que certaines lumières persistent, même sans applaudissements.
+
+Et le porteur de feu ?
+
+Il apprit, lentement, que sa flamme n’était pas rallumée — mais ***nourrie***.
+
+Les histoires parlaient de six.
+
+La vérité était ***sans limites***.`
+        }
     }
 ];
