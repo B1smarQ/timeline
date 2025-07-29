@@ -638,4 +638,30 @@ They walked.
 
 And in walking, they defied the universe's oldest lie:
 that everything must eventually
-*stop.*`,isRead:!1}]}]}];export{e as sampleData_en};
+*stop.*`,isRead:!1}]}],epilogue:{id:"epilogue-1",title:"Epilogue: The Flaw in the Fire",description:"You have noticed it, right? The major flaw in the stories that you have witnessed. How did the boy who lost his laughter amidst the drums of war become the fire-bearer? Who are the joy-bringer and the sun-swallower?",mood:"hopeful",image:"https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w",content:`# Epilogue: The Flaw in the Fire
+
+The stories lied.
+
+Not in their words, but in their solitude.
+
+The boy who became the fire-bearer did not rediscover his flame through the star prince’s devotion, the mime’s shattered glass, or the shadow-eater’s quiet solidarity alone.
+
+There were others—
+
+Hands that steadied his when the kindling wouldn’t catch.
+
+Voices that spoke his name when the night grew too loud.
+
+Silences that held him, unafraid of the dark.
+
+The sun-swallower was not just a man who burned too bright — he was the proof that even wildfires leave fertile soil behind.
+
+The joy-bringer was not just a fleeting smile — he was the reminder that some lights persist, even when no one applauds.
+
+And the fire-bearer?
+
+He learned, slowly, that his flame was not reignited — it was ***fed***.
+
+The stories spoke of six.
+
+The truth was ***boundless***.`}}];export{e as sampleData_en};

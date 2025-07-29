@@ -628,4 +628,30 @@ Sie gingen.
 
 Und im Gehen widersprachen sie der ältesten Lüge des Universums:
 dass alles irgendwann
-*aufhören muss.*`,isRead:!1}]}]}];export{e as sampleData_de};
+*aufhören muss.*`,isRead:!1}]}],epilogue:{id:"epilogue-1",title:"Epilog: Der Fehler im Feuer",description:"Du hast es bemerkt, nicht wahr? Den großen Fehler in den Geschichten, die du miterlebt hast. Wie wurde der Junge, der sein Lachen im Krieg verloren hatte, zum Feuerbringer? Wer sind der Freudenbringer und der Sonnenschlucker?",mood:"hopeful",image:"https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w",content:`# Epilog: Der Fehler im Feuer
+
+Die Geschichten logen.
+
+Nicht in ihren Worten, sondern in ihrer Einsamkeit.
+
+Der Junge, der zum Feuerbringer wurde, fand seine Flamme nicht allein durch die Hingabe des Sternenprinzen, das zerbrochene Glas des Pantomimen oder die stille Solidarität des Schattenfressers.
+
+Es gab andere—
+
+Hände, die seine stützten, wenn das Zunder nicht zünden wollte.
+
+Stimmen, die seinen Namen riefen, wenn die Nacht zu laut wurde.
+
+Schweigen, das ihn hielt, ohne Angst vor der Dunkelheit.
+
+Der Sonnenschlucker war nicht nur ein Mann, der zu hell brannte — er war der Beweis, dass selbst Waldbrände fruchtbaren Boden hinterlassen.
+
+Der Freudenbringer war nicht nur ein flüchtiges Lächeln — er war die Erinnerung, dass manche Lichter weiterleuchten, selbst wenn niemand applaudiert.
+
+Und der Feuerbringer?
+
+Er lernte langsam, dass seine Flamme nicht neu entfacht — sondern ***genährt*** wurde.
+
+Die Geschichten sprachen von sechs.
+
+Die Wahrheit war ***grenzenlos***.`}}];export{e as sampleData_de};
