@@ -69,6 +69,10 @@ export interface AppState {
     isInCreditsPhase: boolean;
     setIsInCreditsPhase: (inCredits: boolean) => void;
 
+    // Reviews modal state
+    showReviews: boolean;
+    setShowReviews: (show: boolean) => void;
+
     // Stage unlock notification
     stageUnlockNotification: { stageTitle: string; stageIndex: number; stageId: string } | null;
     setStageUnlockNotification: (notification: { stageTitle: string; stageIndex: number; stageId: string } | null) => void;

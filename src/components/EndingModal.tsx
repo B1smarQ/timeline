@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ParticleSystem, FloatingOrbs } from './ParticleSystem';
-import { RotateCcw, X, User } from 'lucide-react';
+import { RotateCcw, X, User, Star } from 'lucide-react';
 import { creditsData, creditsConfig, CreditEntry } from '../data/creditsData';
 import { useSound } from '../hooks/useSound';
 import { useLocalization } from '../hooks/useLocalization';
@@ -13,6 +13,7 @@ interface EndingModalProps {
     onCreditsStateChange?: (isShowingCredits: boolean) => void;
     onCreditsComplete?: () => void;
     showCredits?: boolean;
+    onShowReviews?: () => void;
 }
 
 interface CreditPanelProps {
@@ -96,12 +97,21 @@ const CreditPanel: React.FC<CreditPanelProps> = ({ credit, isVisible }) => {
     );
 };
 
-export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClose, onCreditsStateChange, onCreditsComplete, showCredits = true }) => {
+export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClose, onCreditsStateChange, onCreditsComplete, showCredits = true, onShowReviews }) => {
     const [currentCreditIndex, setCurrentCreditIndex] = useState(0);
     const [showControls, setShowControls] = useState(false);
     const [creditsComplete, setCreditsComplete] = useState(false);
     const { playSound } = useSound();
     const { t } = useLocalization();
+
+    // Debug the reviews button condition
+    React.useEffect(() => {
+        console.log(`🎭 EndingModal reviews button condition:`, {
+            showCredits,
+            hasOnShowReviews: !!onShowReviews,
+            shouldShowButton: !showCredits && !!onShowReviews
+        });
+    }, [showCredits, onShowReviews]);
 
     useEffect(() => {
         if (!show) {
@@ -334,6 +344,41 @@ export const EndingModal: React.FC<EndingModalProps> = ({ show, onRestart, onClo
                                                         }}
                                                     />
                                                 </motion.button>
+
+                                                {/* Reviews Button - Only show when not in credits phase */}
+                                                {!showCredits && onShowReviews && (
+                                                    <motion.button
+                                                        className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold text-lg shadow-2xl border border-indigo-400/30 overflow-hidden min-w-48"
+                                                        onClick={() => {
+                                                            playSound('click');
+                                                            onShowReviews();
+                                                        }}
+                                                        whileHover={{ scale: 1.05, y: -2 }}
+                                                        whileTap={{ scale: 0.98 }}
+                                                    >
+                                                        {/* Button Glow Effect */}
+                                                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                                                        {/* Button Content */}
+                                                        <div className="relative flex items-center justify-center gap-3">
+                                                            <Star size={20} />
+                                                            <span>Read Reviews</span>
+                                                        </div>
+
+                                                        {/* Shimmer Effect */}
+                                                        <motion.div
+                                                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                                            initial={{ x: '-100%' }}
+                                                            animate={{ x: '100%' }}
+                                                            transition={{
+                                                                duration: 2,
+                                                                repeat: Infinity,
+                                                                repeatDelay: 5,
+                                                                ease: "easeInOut"
+                                                            }}
+                                                        />
+                                                    </motion.button>
+                                                )}
 
                                                 {/* Continue Button */}
                                                 <motion.button

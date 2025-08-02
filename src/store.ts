@@ -39,6 +39,8 @@ export const useAppStore = create<AppState>()(
             setShowEpilogue: (show: boolean) => set({ showEpilogue: show }),
             isInCreditsPhase: true,
             setIsInCreditsPhase: (inCredits: boolean) => set({ isInCreditsPhase: inCredits }),
+            showReviews: false,
+            setShowReviews: (show: boolean) => set({ showReviews: show }),
             stageUnlockNotification: null,
             setStageUnlockNotification: (notification) => set({ stageUnlockNotification: notification }),
 
@@ -196,6 +198,7 @@ export const useAppStore = create<AppState>()(
                     showEnding: false,
                     showEpilogue: false,
                     isInCreditsPhase: true,
+                    showReviews: false,
                     stageUnlockNotification: null,
                 });
             },

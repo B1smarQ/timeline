@@ -10,6 +10,7 @@ import { useAppStore } from './store';
 import { WelcomeModal } from './components/WelcomeModal';
 import { EndingModal } from './components/EndingModal';
 import { EpilogueModal } from './components/EpilogueModal';
+import { ReviewsModal } from './components/ReviewsModal';
 import { AudioManager } from './components/AudioManager';
 import { StageUnlockNotification } from './components/StageUnlockNotification';
 import { LocalizationProvider, useLocalization } from './hooks/useLocalization';
@@ -31,6 +32,8 @@ const AppContent: React.FC = () => {
         setShowEpilogue,
         isInCreditsPhase,
         setIsInCreditsPhase,
+        showReviews,
+        setShowReviews,
         stages,
         resetProgress,
         currentLanguage,
@@ -40,10 +43,32 @@ const AppContent: React.FC = () => {
     const { t } = useLocalization();
     const [isShowingCredits, setIsShowingCredits] = useState(false);
 
-    // Debug credits state changes
+    // Debug state changes
     React.useEffect(() => {
         console.log(`🎬 Credits state changed: ${isShowingCredits}`);
     }, [isShowingCredits]);
+
+    React.useEffect(() => {
+        console.log(`📖 Reviews state changed: ${showReviews}`);
+    }, [showReviews]);
+
+    React.useEffect(() => {
+        console.log(`🎭 Ending modal visibility: ${showEnding && !showReviews}`);
+    }, [showEnding, showReviews]);
+
+    // Debug reviews state changes
+    React.useEffect(() => {
+        console.log(`📖 Reviews state changed: ${showReviews}`);
+    }, [showReviews]);
+
+    // Debug ending modal state
+    React.useEffect(() => {
+        console.log(`🎭 Ending modal state:`, {
+            showEnding,
+            isInCreditsPhase,
+            showReviews
+        });
+    }, [showEnding, isInCreditsPhase, showReviews]);
 
     // Sync language between store and localization
     useLanguageSync();
@@ -86,12 +111,14 @@ const AppContent: React.FC = () => {
         setShowEpilogue(false);
         setIsShowingCredits(false);
         setIsInCreditsPhase(true);
+        setShowReviews(false);
     };
 
     const handleCloseEnding = () => {
         setShowEnding(false);
         setIsShowingCredits(false);
         setIsInCreditsPhase(true);
+        setShowReviews(false);
     };
 
 
@@ -113,10 +140,20 @@ const AppContent: React.FC = () => {
         setIsInCreditsPhase(false);
     };
 
+    const handleShowReviews = () => {
+        console.log('🎬 handleShowReviews called');
+        setShowReviews(true);
+    };
+
+    const handleCloseReviews = () => {
+        setShowReviews(false);
+    };
+
     // Determine current scene for audio
     const getCurrentScene = () => {
         if (showWelcome) return 'welcome';
         if (showLanguageSelection) return 'welcome'; // Use welcome audio for language selection
+        if (showReviews) return 'reviews';
         if (showEpilogue) return 'epilogue';
         if (showEnding) return 'ending';
         if (selectedChapter) return 'reading';
@@ -150,7 +187,7 @@ const AppContent: React.FC = () => {
 
             {/* Audio Manager */}
             <AudioManager
-                currentScene={getCurrentScene() as 'welcome' | 'timeline' | 'reading' | 'ending' | 'credits' | 'epilogue'}
+                currentScene={getCurrentScene() as 'welcome' | 'timeline' | 'reading' | 'ending' | 'credits' | 'epilogue' | 'reviews'}
                 isReading={!!selectedChapter}
                 storyMood={getCurrentMood()}
                 isShowingCredits={isShowingCredits}
@@ -166,12 +203,13 @@ const AppContent: React.FC = () => {
                 onContinue={handleCloseLanguageSelection}
             />
             <EndingModal
-                show={showEnding}
+                show={showEnding && !showReviews}
                 onRestart={handleRestartJourney}
                 onClose={handleCloseEnding}
                 onCreditsStateChange={setIsShowingCredits}
                 onCreditsComplete={handleCreditsComplete}
                 showCredits={isInCreditsPhase}
+                onShowReviews={handleShowReviews}
             />
             {showEpilogue && stages.length > 0 && stages[stages.length - 1]?.epilogue && (
                 <EpilogueModal
@@ -180,6 +218,10 @@ const AppContent: React.FC = () => {
                     onComplete={handleEpilogueComplete}
                 />
             )}
+            <ReviewsModal
+                show={showReviews}
+                onClose={handleCloseReviews}
+            />
             <StageUnlockNotification />
             {!showWelcome && (
                 <motion.div
@@ -205,17 +247,20 @@ const AppContent: React.FC = () => {
                     >
                         <div className="flex flex-col gap-4 items-end">
                             <FontSizeControls />
-                            {/* Development Button for Credits */}
+                            {/* Development Buttons */}
                             {true && (
-                                < motion.button
-                                    className="px-3 py-2 text-xs bg-purple-600/20 border border-purple-400/30 rounded-lg text-purple-200 hover:bg-purple-600/30 transition-colors backdrop-blur-sm"
-                                    onClick={() => setShowEnding(true)}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    title="Show Credits (Dev Only)"
-                                >
-                                    {t.ending.credits}
-                                </motion.button>
+                                <>
+                                    <motion.button
+                                        className="px-3 py-2 text-xs bg-purple-600/20 border border-purple-400/30 rounded-lg text-purple-200 hover:bg-purple-600/30 transition-colors backdrop-blur-sm"
+                                        onClick={() => setShowEnding(true)}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        title="Show Credits (Dev Only)"
+                                    >
+                                        {t.ending.credits}
+                                    </motion.button>
+
+                                </>
                             )}
                         </div>
                     </motion.header>
