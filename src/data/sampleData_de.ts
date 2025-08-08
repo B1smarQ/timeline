@@ -22,7 +22,6 @@ export const sampleData_de: TimelineStage[] = [
                         title: 'Das ungebrochene Lied',
                         description: 'Das Lachen eines Kindes hallt durch eine sterbende Stadt und übertönt die Trommelschläge des nahenden Krieges.',
                         mood: 'hopeful',
-                        image: 'https://doodleipsum.com/700x1244/flat?i=3ce040fbbf898c2e71cf6d7713c651ce',
                         content: `# Das ungebrochene Lied
 
 Der Junge kannte nur eine Wahrheit: Die Welt war freundlich.
@@ -1052,7 +1051,7 @@ dass alles irgendwann
             title: 'Epilog: Der Fehler im Feuer',
             description: 'Du hast es bemerkt, nicht wahr? Den großen Fehler in den Geschichten, die du miterlebt hast. Wie wurde der Junge, der sein Lachen im Krieg verloren hatte, zum Feuerbringer? Wer sind der Freudenbringer und der Sonnenschlucker?',
             mood: 'hopeful',
-            image: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/9e205b70-7c17-4c3f-84ec-3b47ce333d63/Picsart_22-05-17_00-50-42-638.jpg?format=1000w',
+            image: 'https://images.squarespace-cdn.com/content/v1/6282048f3ddae806d695b4b8/b2164acd-7d30-473c-ab0f-a87d345b3905/Picsart_22-05-17_00-58-53-403.jpg?format=1000w',
             content: `# Epilog: Der Fehler im Feuer
 
 Die Geschichten logen.
