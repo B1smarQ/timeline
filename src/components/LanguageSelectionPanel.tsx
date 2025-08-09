@@ -134,14 +134,7 @@ export const LanguageSelectionPanel: React.FC<LanguageSelectionPanelProps> = ({ 
                                     >
                                         Before we begin, please select your language.
                                     </motion.p>
-                                    <motion.p
-                                        className="text-gray-300 text-lg"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ delay: 0.9 }}
-                                    >
-                                        All localizations are verified to be accurate.
-                                    </motion.p>
+                                    
                                     <motion.p
                                         className="text-gray-300 text-lg"
                                         initial={{ opacity: 0 }}
